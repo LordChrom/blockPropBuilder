@@ -1,0 +1,162 @@
++HardcodedID
+=55498; end_portal end_gateway
+
++Translucent
+    white_stained_glass white_stained_glass_pane
+    orange_stained_glass orange_stained_glass_pane
+    magenta_stained_glass magenta_stained_glass_pane
+    light_blue_stained_glass light_blue_stained_glass_pane
+    yellow_stained_glass yellow_stained_glass_pane
+    lime_stained_glass lime_stained_glass_pane
+    pink_stained_glass pink_stained_glass_pane
+    gray_stained_glass gray_stained_glass_pane
+    light_gray_stained_glass light_gray_stained_glass_pane
+    cyan_stained_glass cyan_stained_glass_pane
+    purple_stained_glass purple_stained_glass_pane
+    blue_stained_glass blue_stained_glass_pane
+    brown_stained_glass brown_stained_glass_pane
+    green_stained_glass green_stained_glass_pane
+    red_stained_glass red_stained_glass_pane
+    black_stained_glass black_stained_glass_pane
+
++Transparent
+    redstone_wire
+    lever %buttons
+    %replaceable
+    glass
+    
+    trial_spawner_state=inactive vault_state=inactive
+    trial_spawner:ominous=false vault:ominous=false
+    
+    soul_fire soul_torch soul_wall_torch soul_campfire soul_lantern
+    fire torch wall_torch campfire %candle_cakes %candles
+    cave_vines:berries=true cave_vines_plant:berries=true
+    light
+    
+    trial_spawner:ominous=true vault:ominous=true
+    brewing_stand
+    beacon end_rod
+    
+     nether_portal
+    redstone_torch redstone_wall_torch
+    glow_lichen red_mushroom brown_mushroom
+    firefly_bush
+    sea_pickle:waterlogged=true
+    calibrated_sculk_sensor
+    
+
+    
+    amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud
++Subsurface & Transparent
+    %leaves
+
+    %crops %flowers %edible_for_sheep sugar_cane tall_grass
+    short_grass leaf_litter kelp_plant bush vine
+    crimson_roots crimson_fungus warped_roots warped_fungus
+    twisting_vines twisting_vines_plant weeping_vines weeping_vines_plant
+    seagrass tall_seagrass %underwater_bonemeals %cave_vines small_dripleaf
+    nether_wart
+    
+
+
++Emissive
+    %candle_cakes %candles
+    cave_vines:berries=true cave_vines_plant:berries=true
+    light
+    soul_fire soul_torch soul_wall_torch soul_campfire fire torch wall_torch campfire
+    shroomlight glowstone
+    redstone_lamp:lit=true waxed_oxidized_copper_bulb:lit=true oxidized_copper_bulb:lit=true waxed_weathered_copper_bulb:lit=true weathered_copper_bulb:lit=true waxed_exposed_copper_bulb:lit=true exposed_copper_bulb:lit=true waxed_copper_bulb:lit=true copper_bulb:lit=true
+    lava lava_cauldron magma_block
+    trial_spawner_state=inactive
+    vault_state=inactive
+    trial_spawner:ominous=false vault:ominous=false
+    trial_spawner:ominous=true vault:ominous=true
+    lantern soul_lantern
+    furnace:lit=true blast_furnace:lit=true smoker:lit=true
+    jack_o_lantern
+    %lanterns copper_torch copper_wall_torch
+    brewing_stand
+    beacon end_rod
+    end_portal_frame ender_chest
+    dragon_egg crying_obsidian
+    nether_portal
+    respawn_anchor:charges=1 respawn_anchor:charges=2 respawn_anchor:charges=3 respawn_anchor:charges=4
+    redstone_torch redstone_wall_torch redstone_ore:lit=true
+    sculk_sensor:sculk_sensor_phase=inactive sculk_catalyst:bloom=false sculk_sensor sculk_catalyst
+    sea_lantern conduit sea_pickle:waterlogged=true
+    enchanting_table
+    glow_lichen red_mushroom brown_mushroom firefly_bush
+    amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud calibrated_sculk_sensor
+    ochre_froglight verdant_froglight pearlescent_froglight
+
++Color
+    =984;
+        redstone_lamp:lit=true waxed_oxidized_copper_bulb:lit=true
+        oxidized_copper_bulb:lit=true waxed_weathered_copper_bulb:lit=true
+        weathered_copper_bulb:lit=true waxed_exposed_copper_bulb:lit=true
+        exposed_copper_bulb:lit=true waxed_copper_bulb:lit=true copper_bulb:lit=true
+        brewing_stand
+
+    =985;
+        trial_spawner:ominous=false vault:ominous=false
+        furnace:lit=true blast_furnace:lit=true smoker:lit=true
+        jack_o_lantern lantern
+
+    =838;
+        dragon_egg crying_obsidian
+        respawn_anchor:charges=1 respawn_anchor:charges=2
+        respawn_anchor:charges=3 respawn_anchor:charges=4
+
+    =729;
+        amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud
+        calibrated_sculk_sensor
+
+    =922; redstone_torch redstone_wall_torch redstone_ore:lit=true
+    =851; fire torch wall_torch campfire %candle_cakes %candles
+    =552; cave_vines:berries=true cave_vines_plant:berries=true
+    =399; soul_fire soul_torch soul_wall_torch soul_campfire soul_lantern
+    =495; %lanterns copper_torch copper_wall_torch
+
+    =941; lava lava_cauldron magma_block
+
+    =035; sculk_sensor:sculk_sensor_phase=inactive sculk_catalyst:bloom=false
+    =069; sculk_sensor sculk_catalyst
+    =079; trial_spawner:ominous=true vault:ominous=true
+
+    =589; sea_lantern conduit
+    =565; glow_lichen red_mushroom brown_mushroom
+
+
+    =777; white_stained_glass white_stained_glass_pane
+    =864; orange_stained_glass orange_stained_glass_pane
+    =747; magenta_stained_glass magenta_stained_glass_pane
+    =668; light_blue_stained_glass light_blue_stained_glass_pane
+    =873; yellow_stained_glass yellow_stained_glass_pane
+    =584; lime_stained_glass lime_stained_glass_pane
+    =867; pink_stained_glass pink_stained_glass_pane
+    =333; gray_stained_glass gray_stained_glass_pane
+    =555; light_gray_stained_glass light_gray_stained_glass_pane
+    =467; cyan_stained_glass cyan_stained_glass_pane
+    =648; purple_stained_glass purple_stained_glass_pane
+    =337; blue_stained_glass blue_stained_glass_pane
+    =752; brown_stained_glass brown_stained_glass_pane
+    =262; green_stained_glass green_stained_glass_pane
+    =722; red_stained_glass red_stained_glass_pane
+    =222; black_stained_glass black_stained_glass_pane
+
+    =498; end_portal end_gateway
+
+    =221; light
+    =763; glowstone
+    =741; shroomlight
+    =000; trial_spawner_state=inactive
+    =322; vault_state=inactive
+    =777; beacon end_rod
+    =498; end_portal_frame ender_chest
+    =709; nether_portal
+    =297; sea_pickle:waterlogged=true
+    =687; enchanting_table
+    =798; firefly_bush
+    =886; ochre_froglight
+    =686; verdant_froglight
+    =757; pearlescent_froglight
