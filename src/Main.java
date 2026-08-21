@@ -6,19 +6,19 @@ public class Main {
 	static int assignNumber(HashMap<String,String> properties){
 		if(properties.containsKey("hardcodedID"))
 			return Integer.parseInt(properties.get("hardcodedID"));
-		boolean Translucent = properties.containsKey("translucent");
-		boolean Transparent = properties.containsKey("transparent");
-		boolean Subsurface = properties.containsKey("subsurface");
-		boolean Emissive = properties.containsKey("emissive");
+		boolean translucent = properties.containsKey("translucent");
+		boolean transparent = properties.containsKey("transparent");
+		boolean subsurface = properties.containsKey("subsurface");
+		boolean emissive = properties.containsKey("emissive");
 
-		int lightType = Emissive?2:0;
+		int lightType = emissive?2:0;
 
 		if(properties.containsKey("lightType"))
 			lightType = Integer.parseInt(properties.get("lightType"));
 
-		int m = (Emissive?4:0)+(Translucent?2:0)+((!(Translucent||Transparent))?1:0);
+		int m = (emissive?4:0)+(translucent?2:0)+((!(translucent||transparent))?1:0);
 		String color = properties.getOrDefault("color","0");
-		return lightType*10000 + m*1000 + (Subsurface?15:Integer.parseInt(color));
+		return lightType*10000 + m*1000 + (subsurface?15:Integer.parseInt(color));
 	}
 
 
@@ -106,7 +106,7 @@ public class Main {
 
 		for(int id: assignedIDs.keySet().stream().sorted().toList()){
 			ret.append("block.").append(id).append(" =");
-			for(String block: assignedIDs.get(id)){
+			for(String block: assignedIDs.get(id).stream().sorted().toList()){
 				ret.append(" ").append(block);
 			}
 			ret.append('\n');

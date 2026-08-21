@@ -26,16 +26,21 @@
     lever %buttons
     %replaceable
     glass
-    
-    trial_spawner_state=inactive vault_state=inactive
-    trial_spawner:ominous=false vault:ominous=false
-    
+
+    trial_spawner:ominous=true:trial_spawner_state=active trial_spawner:ominous=true:trial_spawner_state=ejecting_reward trial_spawner:ominous=true:trial_spawner_state=waiting_for_reward_ejection
+    trial_spawner:ominous=false:trial_spawner_state=active trial_spawner:ominous=false:trial_spawner_state=ejecting_reward trial_spawner:ominous=false:trial_spawner_state=waiting_for_reward_ejection
+    trial_spawner:trial_spawner_state=cooldown trial_spawner:trial_spawner_state=inactive trial_spawner:trial_spawner_state=waiting_for_players
+    vault:ominous=false:vault_state=active vault:ominous=false:vault_state=ejecting vault:ominous=false:vault_state=unlocking
+    vault:ominous=true:vault_state=active vault:ominous=true:vault_state=ejecting vault:ominous=true:vault_state=unlocking
+    vault:vault_state=inactive
+
+
+
     soul_fire soul_torch soul_wall_torch soul_campfire soul_lantern
     fire torch wall_torch campfire %candle_cakes %candles
     cave_vines:berries=true cave_vines_plant:berries=true
     light
-    
-    trial_spawner:ominous=true vault:ominous=true
+
     brewing_stand
     beacon end_rod
     
@@ -69,10 +74,10 @@
     shroomlight glowstone
     redstone_lamp:lit=true waxed_oxidized_copper_bulb:lit=true oxidized_copper_bulb:lit=true waxed_weathered_copper_bulb:lit=true weathered_copper_bulb:lit=true waxed_exposed_copper_bulb:lit=true exposed_copper_bulb:lit=true waxed_copper_bulb:lit=true copper_bulb:lit=true
     lava lava_cauldron magma_block
-    trial_spawner:trial_spawner_state=inactive
-    vault_state=inactive
-    trial_spawner:ominous=false vault:ominous=false
-    trial_spawner:ominous=true vault:ominous=true
+    trial_spawner:ominous=true:trial_spawner_state=active trial_spawner:ominous=true:trial_spawner_state=ejecting_reward trial_spawner:ominous=true:trial_spawner_state=waiting_for_reward_ejection
+    trial_spawner:ominous=false:trial_spawner_state=active trial_spawner:ominous=false:trial_spawner_state=ejecting_reward trial_spawner:ominous=false:trial_spawner_state=waiting_for_reward_ejection
+    vault:ominous=false:vault_state=active vault:ominous=false:vault_state=ejecting vault:ominous=false:vault_state=unlocking
+    vault:ominous=true:vault_state=active vault:ominous=true:vault_state=ejecting vault:ominous=true:vault_state=unlocking
     lantern soul_lantern
     furnace:lit=true blast_furnace:lit=true smoker:lit=true
     jack_o_lantern
@@ -102,7 +107,8 @@
         brewing_stand
 
     =985;
-        trial_spawner:ominous=false vault:ominous=false
+        trial_spawner:ominous=false:trial_spawner_state=active trial_spawner:ominous=false:trial_spawner_state=ejecting_reward trial_spawner:ominous=false:trial_spawner_state=waiting_for_reward_ejection
+        vault:ominous=false:vault_state=active vault:ominous=false:vault_state=ejecting vault:ominous=false:vault_state=unlocking
         furnace:lit=true blast_furnace:lit=true smoker:lit=true
         jack_o_lantern lantern
 
@@ -125,11 +131,10 @@
 
     =035; sculk_sensor:sculk_sensor_phase=inactive sculk_catalyst:bloom=false
     =069; sculk_sensor sculk_catalyst
-    =079; trial_spawner:ominous=true vault:ominous=true
-
+    =079; trial_spawner:ominous=true:trial_spawner_state=active trial_spawner:ominous=true:trial_spawner_state=ejecting_reward trial_spawner:ominous=true:trial_spawner_state=waiting_for_reward_ejection
+    vault:ominous=true:vault_state=active vault:ominous=true:vault_state=ejecting vault:ominous=true:vault_state=unlocking
     =589; sea_lantern conduit
     =565; glow_lichen red_mushroom brown_mushroom
-
 
     =777; white_stained_glass white_stained_glass_pane
     =864; orange_stained_glass orange_stained_glass_pane
@@ -153,8 +158,6 @@
     =221; light
     =763; glowstone
     =741; shroomlight
-    =000; trial_spawner:trial_spawner_state=inactive
-    =322; vault_state=inactive
     =777; beacon end_rod
     =498; end_portal_frame ender_chest
     =709; nether_portal
@@ -164,7 +167,6 @@
     =886; ochre_froglight
     =686; verdant_froglight
     =757; pearlescent_froglight
-
 
 
 +lightType
@@ -181,6 +183,7 @@
     fire torch wall_torch campfire %candle_cakes %candles
     soul_fire soul_torch soul_wall_torch soul_campfire soul_lantern
     %lanterns copper_torch copper_wall_torch
-    trial_spawner:ominous=false vault:ominous=false
     lantern furnace:lit=true blast_furnace:lit=true smoker:lit=true jack_o_lantern
-    trial_spawner:ominous=true vault:ominous=true
+    trial_spawner:ominous=true:trial_spawner_state=active trial_spawner:ominous=true:trial_spawner_state=ejecting_reward trial_spawner:ominous=true:trial_spawner_state=waiting_for_reward_ejection
+    trial_spawner:ominous=false:trial_spawner_state=active trial_spawner:ominous=false:trial_spawner_state=ejecting_reward trial_spawner:ominous=false:trial_spawner_state=waiting_for_reward_ejection
+
