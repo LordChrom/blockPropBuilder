@@ -1,7 +1,8 @@
-+HardcodedID
++hardcodedID
 =55498; end_portal end_gateway
 
-+Translucent
+
++translucent
     white_stained_glass white_stained_glass_pane
     orange_stained_glass orange_stained_glass_pane
     magenta_stained_glass magenta_stained_glass_pane
@@ -19,7 +20,8 @@
     red_stained_glass red_stained_glass_pane
     black_stained_glass black_stained_glass_pane
 
-+Transparent
+
++transparent
     redstone_wire
     lever %buttons
     %replaceable
@@ -43,11 +45,11 @@
     firefly_bush
     sea_pickle:waterlogged=true
     calibrated_sculk_sensor
-    
 
-    
     amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud
-+Subsurface & Transparent
+
+
++subsurface & transparent
     %leaves
 
     %crops %flowers %edible_for_sheep sugar_cane tall_grass
@@ -59,7 +61,7 @@
     
 
 
-+Emissive
++emissive
     %candle_cakes %candles
     cave_vines:berries=true cave_vines_plant:berries=true
     light
@@ -89,7 +91,9 @@
     amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud calibrated_sculk_sensor
     ochre_froglight verdant_froglight pearlescent_froglight
 
-+Color
+
+
++color
     =984;
         redstone_lamp:lit=true waxed_oxidized_copper_bulb:lit=true
         oxidized_copper_bulb:lit=true waxed_weathered_copper_bulb:lit=true
@@ -160,3 +164,23 @@
     =886; ochre_froglight
     =686; verdant_froglight
     =757; pearlescent_froglight
+
+
+
++lightType
+#Pulsates
+=3
+    sculk_sensor:sculk_sensor_phase=inactive sculk_catalyst:bloom=false
+    sculk_sensor sculk_catalyst
+    amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud calibrated_sculk_sensor
+
+
+
+#Flickers like fire
+=4
+    fire torch wall_torch campfire %candle_cakes %candles
+    soul_fire soul_torch soul_wall_torch soul_campfire soul_lantern
+    %lanterns copper_torch copper_wall_torch
+    trial_spawner:ominous=false vault:ominous=false
+    lantern furnace:lit=true blast_furnace:lit=true smoker:lit=true jack_o_lantern
+    trial_spawner:ominous=true vault:ominous=true
