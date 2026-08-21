@@ -69,7 +69,7 @@
     shroomlight glowstone
     redstone_lamp:lit=true waxed_oxidized_copper_bulb:lit=true oxidized_copper_bulb:lit=true waxed_weathered_copper_bulb:lit=true weathered_copper_bulb:lit=true waxed_exposed_copper_bulb:lit=true exposed_copper_bulb:lit=true waxed_copper_bulb:lit=true copper_bulb:lit=true
     lava lava_cauldron magma_block
-    trial_spawner_state=inactive
+    trial_spawner:trial_spawner_state=inactive
     vault_state=inactive
     trial_spawner:ominous=false vault:ominous=false
     trial_spawner:ominous=true vault:ominous=true
@@ -153,7 +153,7 @@
     =221; light
     =763; glowstone
     =741; shroomlight
-    =000; trial_spawner_state=inactive
+    =000; trial_spawner:trial_spawner_state=inactive
     =322; vault_state=inactive
     =777; beacon end_rod
     =498; end_portal_frame ender_chest
