@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,19 +13,19 @@ public class Main {
 	// 1 bit unused
 	// 3 bits light type
 	// 2 bits opacity type (0 is air, 1 is translucent, 2 is full opacity, 3 is shaped opacity)
-	static int assignNumber(HashMap<String,String> properties){
-		if(properties.containsKey("hardcodedID"))
-			return Integer.parseInt(properties.get("hardcodedID"));
-		boolean translucent = properties.containsKey("translucent");
-		boolean transparent = properties.containsKey("transparent");
-		boolean subsurface = properties.containsKey("subsurface");
-		boolean shaped = properties.containsKey("shaped") ||  properties.containsKey("shapedNonVanilla");;
-		boolean emissive = properties.containsKey("emissive");
+	static int assignNumber(PropertyHolder p){
+		if(p.has("hardcodedID"))
+			return p.getInt("hardcodedID");
+		boolean translucent = p.has("translucent");
+		boolean transparent = p.has("transparent");
+		boolean subsurface = p.has("subsurface");
+		boolean shaped = p.has("shaped") ||  p.has("shapedNonVanilla");;
+		boolean emissive = p.has("emissive");
 
 		int lightType = emissive?2:0;
 
-		if(properties.containsKey("lightType"))
-			lightType = Integer.parseInt(properties.get("lightType"));
+		if(p.has("lightType"))
+			lightType = p.getInt("lightType");
 
 		int shapeType;
 
@@ -41,12 +40,12 @@ public class Main {
 
 
 		int m = ((lightType&7)<<2) | (shapeType&3);
-		String color = properties.getOrDefault("color","0");
+		String color = p.getOrDefault("color","0");
 		return m*1000 + (subsurface?15:Integer.parseInt(color));
 	}
 
 
-	static HashMap<String, HashMap<String,String>> blockMap = new HashMap<>();
+	static HashMap<String, PropertyHolder> blockMap = new HashMap<>();
 	static HashMap<Integer,HashSet<String>> assignedIDs = new HashMap<>();
 
 
@@ -57,16 +56,13 @@ public class Main {
 
 	static void ensureExistence(String block){
 		if(blockMap.containsKey(block)) return;
-		blockMap.put(block,new HashMap<>());
+		blockMap.put(block,new PropertyHolder());
 	}
 
-	static void applyProperty(String block){
-		if(propertyName.isEmpty() || block.isEmpty())
-			return;
-
+	static String ensurePrefixed(String block){
 		boolean validPrefix = false;
-		boolean blockTag = block.charAt(0)=='%';
-		if(blockTag)
+		char firstChar = block.charAt(0);
+		if(!Character.isAlphabetic(firstChar))
 			block=block.substring(1);
 
 		for(String prefix: recognizedPrefixes)
@@ -74,17 +70,44 @@ public class Main {
 
 
 		if(!validPrefix)
-			block=recognizedPrefixes.get(0)+block;
+			block=recognizedPrefixes.getFirst()+block;
 
-		if(blockTag)
-			block="%"+block;
+		if(!Character.isAlphabetic(firstChar))
+			block=firstChar+block;
+
+		return block;
+	}
+
+	static void applyProperty(String block){
+		if(propertyName.isEmpty() || block.isEmpty())
+			return;
+		block = ensurePrefixed(block);
+
+		String state = "";
+		int blockstateChar = block.indexOf(':',block.indexOf(':')+1);
+		if(blockstateChar>0){
+			state=block.substring(blockstateChar);
+			block=block.substring(0,blockstateChar);
+		}
+
 
 		ensureExistence(block);
-		HashMap<String,String> properties = blockMap.get(block);
+		PropertyHolder properties = blockMap.get(block);
 		for(String property: propertyName.split("[&]")) {
 			property=property.strip();
-			properties.put(property, propertyValue);
-			System.out.println("Applied "+property+(propertyValue.isEmpty()?"":"=")+propertyValue+" to: "+block);
+			properties.put(property, propertyValue, state);
+
+			String print;
+			if(propertyValue==null)
+				print = "Removed "+property+" from ";
+			else
+				print = "Applied "+property+(propertyValue.isEmpty()?"":"=")+propertyValue+" to ";
+
+			print+="block: "+block;
+			if(!state.isEmpty())
+				print+=", blockstate: "+state;
+			print+=".";
+			System.out.println(print);
 		}
 	}
 
@@ -92,12 +115,17 @@ public class Main {
 		while(s.hasNextLine()){
 			String inputLine = s.nextLine().strip();
 			for(String line: inputLine.split(";")){
+				line = line.strip();
 				if(line.isEmpty()) continue;
 
 				switch(line.charAt(0)){
 					case '+' -> {
 						propertyName = line.substring(1);
 						propertyValue="";
+					}
+					case '-' -> {
+						propertyName = line.substring(1);
+						propertyValue=null;
 					}
 					case '=' -> {
 						propertyValue = line.substring(1);
@@ -115,10 +143,16 @@ public class Main {
 
 	static void assignAllIDs(){
 		for(String block:blockMap.keySet()){
-			int id = assignNumber(blockMap.get(block));
-			if(!assignedIDs.containsKey(id))
-				assignedIDs.put(id,new HashSet<>());
-			assignedIDs.get(id).add(block);
+			PropertyHolder blockHolder = blockMap.get(block);
+			for(PropertyHolder stateHolder: blockHolder.getAllStates()) {
+				int id = assignNumber(stateHolder);
+				if (!assignedIDs.containsKey(id))
+					assignedIDs.put(id, new HashSet<>());
+				assignedIDs.get(id).add(block+stateHolder.state);
+
+				System.out.println("state "+stateHolder.state+", id "+id+", block"+block);
+
+			}
 		}
 	}
 
@@ -129,7 +163,7 @@ public class Main {
 		);
 
 		for(int id: assignedIDs.keySet().stream().sorted().toList()){
-			ret.append('\n');
+			ret.append("\n");
 			ret.append("block.").append(id).append(" =");
 			for(String block: assignedIDs.get(id).stream().sorted().toList()){
 				ret.append(" ").append(block);

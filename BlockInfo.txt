@@ -1,6 +1,7 @@
 +hardcodedID
 =55498; end_portal end_gateway
-
++dummy
+    sculk_catalyst:bloom=true
 
 +translucent
     white_stained_glass white_stained_glass_pane

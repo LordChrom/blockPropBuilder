@@ -1,0 +1,31 @@
+
+Statements are separated by line or by semicolons
+Leading and trailing whitespace are removed, other than that spaces separate values in lists
+The first character of each statement determines what operation is performed.
+-------------------------------
++ sets name of current property to the remaining text in the statement.
+	any "&" contained in the property name will set multiple properties
+	each property will have whitespace removed from the start and end, but not middle
+
+- identical to plus, except that the current value is set to null, which makes a property be treated as unset,
+	also prevents this property from being inherited from item's ancestors
+
+= sets the current property value
+
+; anywhere in line, splits line into multiple statements
+
+# nop. Statement is ignored
+
+Otherwise, the text on the line is split by spaces. For every item in the list,
+	the property name is set to current value.
+	Empty values are ignored.
+------------------------------------------
+example:
+-----
+   + my hat   &   my  cat
++my hat&my  cat
+# this is a comment, the previous two lines are functionally identical.
+cobblestone
+# previous line set "my hat" and "my  cat" to "" for cobblestone, which means those will return true for has()
+
++color;=3;  red_concrete red_wool;  # you can pack multiple statements in one line separated by semicolons
