@@ -1,15 +1,13 @@
 +hardcodedID
 =55498; end_portal end_gateway
 
-@dummy
-    sculk_catalyst:bloom=true
+
+
+@ChargedRespawnAnchor
     respawn_anchor:charges=1 respawn_anchor:charges=2 respawn_anchor:charges=3 respawn_anchor:charges=4
 
-@StainedGlassBlocks
-    white_stained_glass orange_stained_glass magenta_stained_glass light_blue_stained_glass yellow_stained_glass lime_stained_glass pink_stained_glass gray_stained_glass light_gray_stained_glass cyan_stained_glass purple_stained_glass blue_stained_glass brown_stained_glass green_stained_glass red_stained_glass black_stained_glass
-@StainedGlassPanes
-    white_stained_glass_pane orange_stained_glass_pane magenta_stained_glass_pane light_blue_stained_glass_pane yellow_stained_glass_pane lime_stained_glass_pane pink_stained_glass_pane gray_stained_glass_pane light_gray_stained_glass_pane cyan_stained_glass_pane purple_stained_glass_pane blue_stained_glass_pane brown_stained_glass_pane green_stained_glass_pane red_stained_glass_pane black_stained_glass_pane
-
+@AmethystBuds
+    amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud
 
 @TrialBlocksActiveOminous
     trial_spawner:ominous=true:trial_spawner_state=active trial_spawner:ominous=true:trial_spawner_state=ejecting_reward trial_spawner:ominous=true:trial_spawner_state=waiting_for_reward_ejection
@@ -28,37 +26,46 @@
     waxed_exposed_copper_bulb:lit=true exposed_copper_bulb:lit=true
     waxed_copper_bulb:lit=true copper_bulb:lit=true
 
-@AmethystBuds
-    amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud
+@NormalExposedFireLights
+    fire torch wall_torch campfire %candle_cakes %candles
+
+@SoulExposedFireLights
+    soul_fire soul_torch soul_wall_torch soul_campfire soul_lantern
+
+@CopperExposedFireLights
+    copper_torch copper_wall_torch
+    %lanterns
+
+@ExposedFireLights; NormalExposedFireLights SoulExposedFireLights CopperExposedFireLights
+
+@EnclosedFlames
+    furnace:lit=true blast_furnace:lit=true smoker:lit=true
+    jack_o_lantern lantern
 
 
-+translucent
-    StainedGlassBlocks StainedGlassPanes
-
+#----
 
 +transparent
+    AmethystBuds
+    TrialBlocks
+    ExposedFireLights
+
     redstone_wire
     lever %buttons
     %replaceable
     glass
 
-    TrialBlocks
-
-    soul_fire soul_torch soul_wall_torch soul_campfire soul_lantern
-    fire torch wall_torch campfire %candle_cakes %candles
-    %lanterns copper_torch copper_wall_torch
     cave_vines:berries=true cave_vines_plant:berries=true
     light
 
     brewing_stand
     beacon end_rod
-    
-     nether_portal
+
+    nether_portal
     redstone_torch redstone_wall_torch
     glow_lichen red_mushroom brown_mushroom
     firefly_bush
     sea_pickle:waterlogged=true
-    AmethystBuds
 
 
 +subsurface & transparent
@@ -70,39 +77,6 @@
     twisting_vines twisting_vines_plant weeping_vines weeping_vines_plant
     seagrass tall_seagrass %underwater_bonemeals %cave_vines small_dripleaf
     nether_wart
-    
-
-
-+emissive
-    %candle_cakes %candles
-    cave_vines:berries=true cave_vines_plant:berries=true
-    light
-    soul_fire soul_torch soul_wall_torch soul_campfire fire torch wall_torch campfire
-    %lanterns copper_torch copper_wall_torch
-    shroomlight glowstone
-    redstone_lamp:lit=true
-    lava lava_cauldron magma_block
-    TrialBlocksActiveOminous
-    TrialBlocksActiveNormal
-    LitCopperBulbs
-
-    lantern soul_lantern
-    furnace:lit=true blast_furnace:lit=true smoker:lit=true
-    jack_o_lantern
-    brewing_stand
-    beacon end_rod
-    end_portal_frame ender_chest
-    dragon_egg crying_obsidian
-    nether_portal
-    respawn_anchor
-    redstone_torch redstone_wall_torch redstone_ore:lit=true
-    sculk_sensor:sculk_sensor_phase=active sculk_catalyst:bloom=false sculk_catalyst
-    sea_lantern conduit sea_pickle:waterlogged=true
-    enchanting_table
-    glow_lichen red_mushroom brown_mushroom firefly_bush
-    AmethystBuds calibrated_sculk_sensor
-    ochre_froglight verdant_froglight pearlescent_froglight
-
 
 +shaped
     %slabs %stairs
@@ -115,38 +89,40 @@
      %trapdoors %wool_carpets %walls
      moss_carpet pale_moss_carpet repeater comparator azalea flowering_azalea
 
-+color
-    =984;
-        redstone_lamp:lit=true LitCopperBulbs
-        brewing_stand
 
-    =985;
-        TrialBlocksActiveNormal
-        furnace:lit=true blast_furnace:lit=true smoker:lit=true
-        jack_o_lantern lantern
-
-    =838;
-        dragon_egg crying_obsidian
-        respawn_anchor
-
-    =729;
-        AmethystBuds
-        calibrated_sculk_sensor
++emissiveColor
+    =984; LitCopperBulbs redstone_lamp:lit=true brewing_stand
+    =985; TrialBlocksActiveNormal EnclosedFlames
+    =838; ChargedRespawnAnchor dragon_egg crying_obsidian
+    =729; AmethystBuds calibrated_sculk_sensor
+    =079; TrialBlocksActiveOminous
+    =851; NormalExposedFireLights
+    =399; SoulExposedFireLights
+    =495; CopperExposedFireLights
 
     =922; redstone_torch redstone_wall_torch redstone_ore:lit=true
-    =851; fire torch wall_torch campfire %candle_cakes %candles
     =552; cave_vines:berries=true cave_vines_plant:berries=true
-    =399; soul_fire soul_torch soul_wall_torch soul_campfire soul_lantern
-    =495; %lanterns copper_torch copper_wall_torch
-
     =941; lava lava_cauldron magma_block
-
     =035; sculk_sensor:sculk_sensor_phase=inactive sculk_sensor:sculk_sensor_phase=cooldown sculk_catalyst:bloom=false
-    =069; sculk_sensor:sculk_sensor_phase=active sculk_catalyst
-    =079; TrialBlocksActiveOminous
+    =069; sculk_sensor:sculk_sensor_phase=active  sculk_catalyst:bloom=true
     =589; sea_lantern conduit
     =565; glow_lichen red_mushroom brown_mushroom
+    =498; end_portal end_gateway
+    =221; light
+    =763; glowstone
+    =741; shroomlight
+    =777; beacon end_rod
+    =498; end_portal_frame ender_chest
+    =709; nether_portal
+    =297; sea_pickle:waterlogged=true
+    =687; enchanting_table
+    =798; firefly_bush
+    =886; ochre_froglight
+    =686; verdant_froglight
+    =757; pearlescent_froglight
 
+
++translucentColor
     =777; white_stained_glass white_stained_glass_pane
     =864; orange_stained_glass orange_stained_glass_pane
     =747; magenta_stained_glass magenta_stained_glass_pane
@@ -164,38 +140,17 @@
     =722; red_stained_glass red_stained_glass_pane
     =222; black_stained_glass black_stained_glass_pane
 
-    =498; end_portal end_gateway
-
-    =221; light
-    =763; glowstone
-    =741; shroomlight
-    =777; beacon end_rod
-    =498; end_portal_frame ender_chest
-    =709; nether_portal
-    =297; sea_pickle:waterlogged=true
-    =687; enchanting_table
-    =798; firefly_bush
-    =886; ochre_froglight
-    =686; verdant_froglight
-    =757; pearlescent_froglight
 
 
-+lightType
-#Pulsates
-=3
-    sculk_sensor:sculk_sensor_phase=active sculk_sensor:sculk_sensor_phase=inactive sculk_sensor:sculk_sensor_phase=cooldown
-    sculk_catalyst:bloom=false
-    sculk_catalyst
-    AmethystBuds calibrated_sculk_sensor
++lightAnimation
+=3 ;#Slowly pulsate
+    AmethystBuds
+    calibrated_sculk_sensor sculk_sensor sculk_catalyst
 
 
+=4 ;#Flicker like fire
+    ExposedFireLights EnclosedFlames
+    TrialBlocksActiveOminous TrialBlocksActiveNormal
 
-#Flickers like fire
-=4
-    fire torch wall_torch campfire %candle_cakes %candles
-    soul_fire soul_torch soul_wall_torch soul_campfire soul_lantern
-    %lanterns copper_torch copper_wall_torch
-    lantern furnace:lit=true blast_furnace:lit=true smoker:lit=true jack_o_lantern
-    trial_spawner:ominous=true:trial_spawner_state=active trial_spawner:ominous=true:trial_spawner_state=ejecting_reward trial_spawner:ominous=true:trial_spawner_state=waiting_for_reward_ejection
-    trial_spawner:ominous=false:trial_spawner_state=active trial_spawner:ominous=false:trial_spawner_state=ejecting_reward trial_spawner:ominous=false:trial_spawner_state=waiting_for_reward_ejection
-
+-lightAnimation;
+    vault

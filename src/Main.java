@@ -6,49 +6,11 @@ import java.util.*;
 import java.util.List;
 
 public class Main {
-	//layout:
-	// number%1000 is color, number/1000 is metadata
-	// leaves 6.03 bits for metadata, also allows 0xffff to not need to be an encoding state, also lets me not change how my colors are set up.
-	// metadata bits are currently:
-	// 1 bit unused
-	// 3 bits light type
-	// 2 bits opacity type (0 is air, 1 is translucent, 2 is full opacity, 3 is shaped opacity)
-	static int assignNumber(PropertyHolder p){
-		if(p.has("hardcodedID"))
-			return p.getInt("hardcodedID");
-		boolean translucent = p.has("translucent");
-		boolean transparent = p.has("transparent");
-		boolean subsurface = p.has("subsurface");
-		boolean shaped = p.has("shaped") ||  p.has("shapedNonVanilla");;
-		boolean emissive = p.has("emissive");
-
-		int lightType = emissive?2:0;
-
-		if(p.has("lightType"))
-			lightType = p.getInt("lightType");
-
-		int shapeType;
-
-		if(translucent)
-			shapeType=1;
-		else if(shaped)
-			shapeType=3;
-		else if(transparent)
-			shapeType=0;
-		else
-			shapeType=2;
-
-
-		int m = ((lightType&7)<<2) | (shapeType&3);
-		String color = p.getOrDefault("color","0");
-		return m*1000 + (subsurface?15:Integer.parseInt(color));
-	}
-
 	static HashMap<String, PropertyHolder> blockMap = new HashMap<>();
 	static HashMap<Integer,HashSet<String>> assignedIDs = new HashMap<>();
 
 
-	enum Operation {PropertySetting,GroupForming};
+	enum Operation {PropertySetting,PropertyRemoval,GroupForming};
 	static Operation currentOperation;
 	static PropertyHolder currentGroup;
 	static String propertyName="";
@@ -148,7 +110,7 @@ public class Main {
 					}
 					case '-' -> {
 						propertyName = lineArgument;
-						propertyValue=null;
+						propertyValue=PropertyHolder.inheritableNull;
 					}
 					case '=' -> {
 						propertyValue = lineArgument;
@@ -178,7 +140,7 @@ public class Main {
 			if(blockHolder.isGroup)
 				continue;
 			for(PropertyHolder stateHolder: blockHolder.getAllStates()) {
-				int id = assignNumber(stateHolder);
+				int id = NumberAssigner.assignNumber(stateHolder);
 				if (!assignedIDs.containsKey(id))
 					assignedIDs.put(id, new HashSet<>());
 				assignedIDs.get(id).add(block+stateHolder.state);

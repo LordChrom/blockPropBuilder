@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class PropertyHolder {
+	public static final String inheritableNull = "InheritableNullValue!!!!!!!";
 	HashMap<String,HashMap<String,String>> blockstatePropertiesMap;
 	private HashMap<String,HashSet<PropertyHolder>> parents;
 	public String state = "";
@@ -23,9 +24,8 @@ public class PropertyHolder {
 		blockstatePropertiesMap.get(blockstate).put(propertyName,value);
 	}
 
-
-	public void put(String propertyName, String value){
-		put(propertyName,value,state);
+	public void remove(String propertyName, String blockstate){
+		put(propertyName,inheritableNull,blockstate);
 	}
 
 	public String rawGet(String property, String blockstate){
@@ -43,25 +43,27 @@ public class PropertyHolder {
 
 	public String get(String property, String blockstate){
 		String prop = rawGet(property, blockstate);
-		if(prop!=null) return prop;
 
-		if(!blockstate.isEmpty()) {
+		if(prop==null && !blockstate.isEmpty()) {
 			prop = rawGet(property, "");
-			if (prop != null) return prop;
 		}
 
-		if(parents == null) return null;
-		for(String ancestor: new String[]{"",blockstate}) {
-			HashSet<PropertyHolder> parentSet = parents.get(ancestor);
-			if(parentSet!=null)
-				for (PropertyHolder parent : parentSet) {
-					prop = parent.get(property, blockstate);
-					if (prop != null)
-						return prop;
-				}
+		if(prop==null && parents != null) {
+			for (String ancestor : new String[]{"", blockstate}) {
+				HashSet<PropertyHolder> parentSet = parents.get(ancestor);
+				if (parentSet != null)
+					for (PropertyHolder parent : parentSet) {
+						prop = parent.get(property, blockstate);
+						if (prop != null)
+							break;
+					}
+			}
 		}
 
-		return null;
+		if(prop==inheritableNull)
+			return null;
+
+		return prop;
 	}
 
 	public String get(String property){
