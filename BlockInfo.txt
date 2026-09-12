@@ -1,25 +1,39 @@
 +hardcodedID
 =55498; end_portal end_gateway
-+dummy
+
+@dummy
     sculk_catalyst:bloom=true
+    respawn_anchor:charges=1 respawn_anchor:charges=2 respawn_anchor:charges=3 respawn_anchor:charges=4
+
+@StainedGlassBlocks
+    white_stained_glass orange_stained_glass magenta_stained_glass light_blue_stained_glass yellow_stained_glass lime_stained_glass pink_stained_glass gray_stained_glass light_gray_stained_glass cyan_stained_glass purple_stained_glass blue_stained_glass brown_stained_glass green_stained_glass red_stained_glass black_stained_glass
+@StainedGlassPanes
+    white_stained_glass_pane orange_stained_glass_pane magenta_stained_glass_pane light_blue_stained_glass_pane yellow_stained_glass_pane lime_stained_glass_pane pink_stained_glass_pane gray_stained_glass_pane light_gray_stained_glass_pane cyan_stained_glass_pane purple_stained_glass_pane blue_stained_glass_pane brown_stained_glass_pane green_stained_glass_pane red_stained_glass_pane black_stained_glass_pane
+
+
+@TrialBlocksActiveOminous
+    trial_spawner:ominous=true:trial_spawner_state=active trial_spawner:ominous=true:trial_spawner_state=ejecting_reward trial_spawner:ominous=true:trial_spawner_state=waiting_for_reward_ejection
+    vault:ominous=true:vault_state=active vault:ominous=true:vault_state=ejecting vault:ominous=true:vault_state=unlocking
+@TrialBlocksActiveNormal
+    trial_spawner:ominous=false:trial_spawner_state=active trial_spawner:ominous=false:trial_spawner_state=ejecting_reward trial_spawner:ominous=false:trial_spawner_state=waiting_for_reward_ejection
+    vault:ominous=false:vault_state=active vault:ominous=false:vault_state=ejecting vault:ominous=false:vault_state=unlocking
+@TrialBlocks
+    TrialBlocksActiveOminous TrialBlocksActiveNormal
+    trial_spawner:trial_spawner_state=cooldown trial_spawner:trial_spawner_state=inactive trial_spawner:trial_spawner_state=waiting_for_players
+    vault:vault_state=inactive
+
+@LitCopperBulbs
+    waxed_oxidized_copper_bulb:lit=true oxidized_copper_bulb:lit=true
+    waxed_weathered_copper_bulb:lit=true weathered_copper_bulb:lit=true
+    waxed_exposed_copper_bulb:lit=true exposed_copper_bulb:lit=true
+    waxed_copper_bulb:lit=true copper_bulb:lit=true
+
+@AmethystBuds
+    amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud
+
 
 +translucent
-    white_stained_glass white_stained_glass_pane
-    orange_stained_glass orange_stained_glass_pane
-    magenta_stained_glass magenta_stained_glass_pane
-    light_blue_stained_glass light_blue_stained_glass_pane
-    yellow_stained_glass yellow_stained_glass_pane
-    lime_stained_glass lime_stained_glass_pane
-    pink_stained_glass pink_stained_glass_pane
-    gray_stained_glass gray_stained_glass_pane
-    light_gray_stained_glass light_gray_stained_glass_pane
-    cyan_stained_glass cyan_stained_glass_pane
-    purple_stained_glass purple_stained_glass_pane
-    blue_stained_glass blue_stained_glass_pane
-    brown_stained_glass brown_stained_glass_pane
-    green_stained_glass green_stained_glass_pane
-    red_stained_glass red_stained_glass_pane
-    black_stained_glass black_stained_glass_pane
+    StainedGlassBlocks StainedGlassPanes
 
 
 +transparent
@@ -28,14 +42,7 @@
     %replaceable
     glass
 
-    trial_spawner:ominous=true:trial_spawner_state=active trial_spawner:ominous=true:trial_spawner_state=ejecting_reward trial_spawner:ominous=true:trial_spawner_state=waiting_for_reward_ejection
-    trial_spawner:ominous=false:trial_spawner_state=active trial_spawner:ominous=false:trial_spawner_state=ejecting_reward trial_spawner:ominous=false:trial_spawner_state=waiting_for_reward_ejection
-    trial_spawner:trial_spawner_state=cooldown trial_spawner:trial_spawner_state=inactive trial_spawner:trial_spawner_state=waiting_for_players
-    vault:ominous=false:vault_state=active vault:ominous=false:vault_state=ejecting vault:ominous=false:vault_state=unlocking
-    vault:ominous=true:vault_state=active vault:ominous=true:vault_state=ejecting vault:ominous=true:vault_state=unlocking
-    vault:vault_state=inactive
-
-
+    TrialBlocks
 
     soul_fire soul_torch soul_wall_torch soul_campfire soul_lantern
     fire torch wall_torch campfire %candle_cakes %candles
@@ -51,8 +58,7 @@
     glow_lichen red_mushroom brown_mushroom
     firefly_bush
     sea_pickle:waterlogged=true
-
-    amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud
+    AmethystBuds
 
 
 +subsurface & transparent
@@ -74,12 +80,12 @@
     soul_fire soul_torch soul_wall_torch soul_campfire fire torch wall_torch campfire
     %lanterns copper_torch copper_wall_torch
     shroomlight glowstone
-    redstone_lamp:lit=true waxed_oxidized_copper_bulb:lit=true oxidized_copper_bulb:lit=true waxed_weathered_copper_bulb:lit=true weathered_copper_bulb:lit=true waxed_exposed_copper_bulb:lit=true exposed_copper_bulb:lit=true waxed_copper_bulb:lit=true copper_bulb:lit=true
+    redstone_lamp:lit=true
     lava lava_cauldron magma_block
-    trial_spawner:ominous=true:trial_spawner_state=active trial_spawner:ominous=true:trial_spawner_state=ejecting_reward trial_spawner:ominous=true:trial_spawner_state=waiting_for_reward_ejection
-    trial_spawner:ominous=false:trial_spawner_state=active trial_spawner:ominous=false:trial_spawner_state=ejecting_reward trial_spawner:ominous=false:trial_spawner_state=waiting_for_reward_ejection
-    vault:ominous=false:vault_state=active vault:ominous=false:vault_state=ejecting vault:ominous=false:vault_state=unlocking
-    vault:ominous=true:vault_state=active vault:ominous=true:vault_state=ejecting vault:ominous=true:vault_state=unlocking
+    TrialBlocksActiveOminous
+    TrialBlocksActiveNormal
+    LitCopperBulbs
+
     lantern soul_lantern
     furnace:lit=true blast_furnace:lit=true smoker:lit=true
     jack_o_lantern
@@ -88,13 +94,13 @@
     end_portal_frame ender_chest
     dragon_egg crying_obsidian
     nether_portal
-    respawn_anchor:charges=1 respawn_anchor:charges=2 respawn_anchor:charges=3 respawn_anchor:charges=4
+    respawn_anchor
     redstone_torch redstone_wall_torch redstone_ore:lit=true
     sculk_sensor:sculk_sensor_phase=active sculk_catalyst:bloom=false sculk_catalyst
     sea_lantern conduit sea_pickle:waterlogged=true
     enchanting_table
     glow_lichen red_mushroom brown_mushroom firefly_bush
-    amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud calibrated_sculk_sensor
+    AmethystBuds calibrated_sculk_sensor
     ochre_froglight verdant_froglight pearlescent_froglight
 
 
@@ -102,7 +108,7 @@
     %slabs %stairs
     end_portal_frame snow farmland dirt_path stonecutter enchanting_table daylight_detector
     piston sticky_piston piston_head
-    sculk_sensor:sculk_sensor_phase=active sculk_sensor:sculk_sensor_phase=inactive sculk_sensor:sculk_sensor_phase=cooldown calibrated_sculk_sensor wooden_shelves
+    sculk_sensor calibrated_sculk_sensor wooden_shelves
     lectern
 
 +shapedNonVanilla
@@ -111,25 +117,20 @@
 
 +color
     =984;
-        redstone_lamp:lit=true waxed_oxidized_copper_bulb:lit=true
-        oxidized_copper_bulb:lit=true waxed_weathered_copper_bulb:lit=true
-        weathered_copper_bulb:lit=true waxed_exposed_copper_bulb:lit=true
-        exposed_copper_bulb:lit=true waxed_copper_bulb:lit=true copper_bulb:lit=true
+        redstone_lamp:lit=true LitCopperBulbs
         brewing_stand
 
     =985;
-        trial_spawner:ominous=false:trial_spawner_state=active trial_spawner:ominous=false:trial_spawner_state=ejecting_reward trial_spawner:ominous=false:trial_spawner_state=waiting_for_reward_ejection
-        vault:ominous=false:vault_state=active vault:ominous=false:vault_state=ejecting vault:ominous=false:vault_state=unlocking
+        TrialBlocksActiveNormal
         furnace:lit=true blast_furnace:lit=true smoker:lit=true
         jack_o_lantern lantern
 
     =838;
         dragon_egg crying_obsidian
-        respawn_anchor:charges=1 respawn_anchor:charges=2
-        respawn_anchor:charges=3 respawn_anchor:charges=4
+        respawn_anchor
 
     =729;
-        amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud
+        AmethystBuds
         calibrated_sculk_sensor
 
     =922; redstone_torch redstone_wall_torch redstone_ore:lit=true
@@ -142,8 +143,7 @@
 
     =035; sculk_sensor:sculk_sensor_phase=inactive sculk_sensor:sculk_sensor_phase=cooldown sculk_catalyst:bloom=false
     =069; sculk_sensor:sculk_sensor_phase=active sculk_catalyst
-    =079; trial_spawner:ominous=true:trial_spawner_state=active trial_spawner:ominous=true:trial_spawner_state=ejecting_reward trial_spawner:ominous=true:trial_spawner_state=waiting_for_reward_ejection
-    vault:ominous=true:vault_state=active vault:ominous=true:vault_state=ejecting vault:ominous=true:vault_state=unlocking
+    =079; TrialBlocksActiveOminous
     =589; sea_lantern conduit
     =565; glow_lichen red_mushroom brown_mushroom
 
@@ -186,7 +186,7 @@
     sculk_sensor:sculk_sensor_phase=active sculk_sensor:sculk_sensor_phase=inactive sculk_sensor:sculk_sensor_phase=cooldown
     sculk_catalyst:bloom=false
     sculk_catalyst
-    amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud calibrated_sculk_sensor
+    AmethystBuds calibrated_sculk_sensor
 
 
 

@@ -1,23 +1,26 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class PropertyHolder {
 	HashMap<String,HashMap<String,String>> blockstatePropertiesMap;
-	private ArrayList<PropertyHolder> parents;
+	private HashMap<String,HashSet<PropertyHolder>> parents;
 	public String state = "";
+	public boolean isGroup = false;
+	public String name;
 
 
-	public void put(String propertyName, String value, String blockstate){
+	public void ensureState(String blockstate){
 		if(blockstatePropertiesMap==null)
 			blockstatePropertiesMap=new HashMap<>();
-
-		HashMap<String,String> stateProperties = blockstatePropertiesMap.get(blockstate);
-		if(stateProperties==null){
-			stateProperties= new HashMap<>();
-			blockstatePropertiesMap.put(blockstate,stateProperties);
+		if(!blockstatePropertiesMap.containsKey(blockstate)){
+			blockstatePropertiesMap.put(blockstate,new HashMap<>());
 		}
+	}
 
-		stateProperties.put(propertyName,value);
+	public void put(String propertyName, String value, String blockstate){
+		ensureState(blockstate);
+		blockstatePropertiesMap.get(blockstate).put(propertyName,value);
 	}
 
 
@@ -47,11 +50,15 @@ public class PropertyHolder {
 			if (prop != null) return prop;
 		}
 
-		if(parents !=null){
-			for(PropertyHolder parent: parents){
-				prop = parent.get(property,blockstate);
-				if(prop!=null) return prop;
-			}
+		if(parents == null) return null;
+		for(String ancestor: new String[]{"",blockstate}) {
+			HashSet<PropertyHolder> parentSet = parents.get(ancestor);
+			if(parentSet!=null)
+				for (PropertyHolder parent : parentSet) {
+					prop = parent.get(property, blockstate);
+					if (prop != null)
+						return prop;
+				}
 		}
 
 		return null;
@@ -86,11 +93,18 @@ public class PropertyHolder {
 		return getIntOrDefault(property,Integer.MIN_VALUE);
 	}
 
-	public void addParent(PropertyHolder p){
+	public void addParent(PropertyHolder p, String state){
 		if(parents==null){
-			parents = new ArrayList<>(2);
+			parents = new HashMap<>();
+			parents.put("",new HashSet<>());
 		}
-		parents.add(p);
+
+		HashSet<PropertyHolder> stateParents = parents.get(state);
+		if(stateParents==null){
+			stateParents = new HashSet<>(2);
+			parents.put(state,stateParents);
+		}
+		stateParents.add(p);
 	}
 
 	private void addAllStatesToList(ArrayList<String> ret){
@@ -99,12 +113,14 @@ public class PropertyHolder {
 				if(!state.isEmpty()){
 					ret.add(state);
 				}
-			}
-		}
+				if(parents==null)
+					continue;
 
-		if(parents!=null){
-			for(PropertyHolder parent: parents)
-				addAllStatesToList(ret);
+				HashSet<PropertyHolder> stateParents = parents.get(state);
+				if(stateParents!=null)
+					for(PropertyHolder parent: stateParents)
+						parent.addAllStatesToList(ret);
+			}
 		}
 	}
 
@@ -115,7 +131,8 @@ public class PropertyHolder {
 		ArrayList<PropertyHolder> ret = new ArrayList<>();
 		for(String state: stateNames){
 			PropertyHolder stateHolder = new PropertyHolder();
-			stateHolder.addParent(this);
+			stateHolder.name = "view of "+name+" from "+state;
+			stateHolder.addParent(this,"");
 			stateHolder.state=state;
 			ret.add(stateHolder);
 		}

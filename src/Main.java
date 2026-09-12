@@ -44,54 +44,50 @@ public class Main {
 		return m*1000 + (subsurface?15:Integer.parseInt(color));
 	}
 
-
 	static HashMap<String, PropertyHolder> blockMap = new HashMap<>();
 	static HashMap<Integer,HashSet<String>> assignedIDs = new HashMap<>();
 
 
+	enum Operation {PropertySetting,GroupForming};
+	static Operation currentOperation;
+	static PropertyHolder currentGroup;
 	static String propertyName="";
 	static String propertyValue="";
 
+//	private static final String groupPrefix = "INTERNAL_GROUP_PREFIX:";
 	static List<String> recognizedPrefixes = List.of(new String[]{"minecraft:"});
 
 	static void ensureExistence(String block){
 		if(blockMap.containsKey(block)) return;
-		blockMap.put(block,new PropertyHolder());
+		PropertyHolder newHolder = new PropertyHolder();
+		newHolder.name="block "+block;
+		blockMap.put(block,newHolder);
 	}
 
 	static String ensurePrefixed(String block){
+		if(blockMap.containsKey(block))
+			return block;
 		boolean validPrefix = false;
 		char firstChar = block.charAt(0);
-		if(!Character.isAlphabetic(firstChar))
+		boolean firstCharIsAlpha = Character.isAlphabetic(firstChar);
+		if(!firstCharIsAlpha)
 			block=block.substring(1);
 
 		for(String prefix: recognizedPrefixes)
-			validPrefix|=block.contains(prefix);
+			validPrefix|=block.startsWith(prefix); //TODO make this not awful
 
 
-		if(!validPrefix)
-			block=recognizedPrefixes.getFirst()+block;
+		if(firstCharIsAlpha || (firstChar=='%')) {
+			block = recognizedPrefixes.getFirst() + block;
+		}
 
-		if(!Character.isAlphabetic(firstChar))
+		if(!firstCharIsAlpha)
 			block=firstChar+block;
 
 		return block;
 	}
 
-	static void applyProperty(String block){
-		if(propertyName.isEmpty() || block.isEmpty())
-			return;
-		block = ensurePrefixed(block);
-
-		String state = "";
-		int blockstateChar = block.indexOf(':',block.indexOf(':')+1);
-		if(blockstateChar>0){
-			state=block.substring(blockstateChar);
-			block=block.substring(0,blockstateChar);
-		}
-
-
-		ensureExistence(block);
+	static void applyProperty(String block, String state){
 		PropertyHolder properties = blockMap.get(block);
 		for(String property: propertyName.split("[&]")) {
 			property=property.strip();
@@ -111,6 +107,30 @@ public class Main {
 		}
 	}
 
+	static void applyGroup(String block, String state){
+		PropertyHolder blockHolder = blockMap.get(block);
+		blockHolder.addParent(currentGroup,state);
+		blockHolder.ensureState(state);
+	}
+
+	static void applyOperation(String block){
+		if(propertyName.isEmpty() || block.isEmpty())
+			return;
+		block = ensurePrefixed(block);
+		String state = "";
+		int blockstateChar = block.indexOf(':',block.indexOf(':')+1);
+		if(blockstateChar>0){
+			state=block.substring(blockstateChar);
+			block=block.substring(0,blockstateChar);
+		}
+
+		ensureExistence(block);
+		switch (currentOperation) {
+			case PropertySetting -> applyProperty(block,state);
+			case GroupForming -> applyGroup(block,state);
+		}
+	}
+
 	static void processInput(Scanner s){
 		while(s.hasNextLine()){
 			String inputLine = s.nextLine().strip();
@@ -118,23 +138,34 @@ public class Main {
 				line = line.strip();
 				if(line.isEmpty()) continue;
 
+				String lineArgument = line.substring(1).strip();
+
 				switch(line.charAt(0)){
 					case '+' -> {
-						propertyName = line.substring(1);
+						currentOperation= Operation.PropertySetting;
+						propertyName = lineArgument;
 						propertyValue="";
 					}
 					case '-' -> {
-						propertyName = line.substring(1);
+						propertyName = lineArgument;
 						propertyValue=null;
 					}
 					case '=' -> {
-						propertyValue = line.substring(1);
+						propertyValue = lineArgument;
+					}
+					case '@' -> {
+						currentOperation= Operation.GroupForming;
+						propertyName=lineArgument;
+						ensureExistence(lineArgument);
+						currentGroup = blockMap.get(lineArgument);
+						currentGroup.isGroup=true;
+						currentGroup.name="Group "+lineArgument;
 					}
 					case '#' -> {}
+
 					default -> {
-						for(String block:line.split(" ")){
-							applyProperty(block);
-						}
+						for(String block:line.split(" "))
+							applyOperation(block);
 					}
 				}
 			}
@@ -144,14 +175,13 @@ public class Main {
 	static void assignAllIDs(){
 		for(String block:blockMap.keySet()){
 			PropertyHolder blockHolder = blockMap.get(block);
+			if(blockHolder.isGroup)
+				continue;
 			for(PropertyHolder stateHolder: blockHolder.getAllStates()) {
 				int id = assignNumber(stateHolder);
 				if (!assignedIDs.containsKey(id))
 					assignedIDs.put(id, new HashSet<>());
 				assignedIDs.get(id).add(block+stateHolder.state);
-
-				System.out.println("state "+stateHolder.state+", id "+id+", block"+block);
-
 			}
 		}
 	}

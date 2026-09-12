@@ -2,23 +2,31 @@
 Statements are separated by line or by semicolons
 Leading and trailing whitespace are removed, other than that spaces separate values in lists
 The first character of each statement determines what operation is performed.
+The text after the first character again has leading and trailing whitespace stripped, and what remains is the
+    "argument" for the operation
+
+If the first character does not specify an operation or a comment,
+    then the most recently specified operation is treated as a list of identifiers, separated by spaces, on which to
+    perform the operation.
 -------------------------------
-+ sets name of current property to the remaining text in the statement.
-	any "&" contained in the property name will set multiple properties
-	each property will have whitespace removed from the start and end, but not middle
++ sets name of current property to the argument
+	optionally, '&' may be used as a separator to set multiple properties at once
+	each property named will have whitespace removed from the start and end, but not middle
+	property value is set to ""
+	provided identifiers will have the named property set to the property value
 
-- identical to plus, except that the current value is set to null, which makes a property be treated as unset,
+= sets the current property value to the argument, while retaining property name
+	provided identifiers will have the named property set to the argument of this statement
+
+- identical to plus, except that the property value is set to null, which makes a property be treated as unset,
 	also prevents this property from being inherited from item's ancestors
-
-= sets the current property value
 
 ; anywhere in line, splits line into multiple statements
 
-# nop. Statement is ignored
+@ forms groups. The argument is the group name, and the identifiers will become members of this group
+    traits applied to the group will be inherited by the group members, except where - is used
 
-Otherwise, the text on the line is split by spaces. For every item in the list,
-	the property name is set to current value.
-	Empty values are ignored.
+# nop. Argument is ignored
 ------------------------------------------
 example:
 -----
