@@ -53,7 +53,7 @@ public class Main {
 		return block;
 	}
 
-	static void applyProperty(String block, String state){
+	static void applyProperty(String block, Blockstate state){
 		PropertyHolder properties = blockMap.get(block);
 		for(String property: propertyName.split("&")) {
 			property=property.strip();
@@ -73,7 +73,7 @@ public class Main {
 		}
 	}
 
-	static void applyGroup(String block, String state){
+	static void applyGroup(String block, Blockstate state){
 		PropertyHolder blockHolder = blockMap.get(block);
 		blockHolder.addParent(currentGroup,state);
 		blockHolder.ensureState(state);
@@ -87,12 +87,13 @@ public class Main {
 			block = ensurePrefixed(block);
 		}
 
-		String state = "";
+		Blockstate state = Blockstate.EmptyState;
 		int blockstateChar = block.indexOf(':');
 		if(!group)
 			blockstateChar = block.indexOf(':',blockstateChar+1);
 		if(blockstateChar>0){
-			state=block.substring(blockstateChar);
+			String statestr = block.substring(blockstateChar);
+			state=Blockstate.of(statestr);
 			block=block.substring(0,blockstateChar);
 		}
 
@@ -153,7 +154,10 @@ public class Main {
 				int id = NumberAssigner.assignNumber(stateHolder);
 				if (!assignedIDs.containsKey(id))
 					assignedIDs.put(id, new HashSet<>());
-				assignedIDs.get(id).add(block+stateHolder.state);
+				String blockstr = block;
+				if(!stateHolder.state.isEmpty())
+					blockstr+=":"+stateHolder.state;
+				assignedIDs.get(id).add(blockstr);
 			}
 		}
 	}
