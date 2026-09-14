@@ -46,22 +46,23 @@
     furnace:lit=true blast_furnace:lit=true smoker:lit=true
     jack_o_lantern lantern
 
-
-
-# @BottomStairs
-# %stairs:half=bottom:facing=north:shape=straight %stairs:half=bottom:facing=north:shape=inner_left %stairs:half=bottom:facing=north:shape=inner_right %stairs:half=bottom:facing=north:shape=outer_left %stairs:half=bottom:facing=north:shape=outer_right
-# %stairs:half=bottom:facing=east:shape=straight  %stairs:half=bottom:facing=east:shape=inner_left  %stairs:half=bottom:facing=east:shape=inner_right  %stairs:half=bottom:facing=east:shape=outer_left  %stairs:half=bottom:facing=east:shape=outer_right
-# %stairs:half=bottom:facing=south:shape=straight %stairs:half=bottom:facing=south:shape=inner_left %stairs:half=bottom:facing=south:shape=inner_right %stairs:half=bottom:facing=south:shape=outer_left %stairs:half=bottom:facing=south:shape=outer_right
-# %stairs:half=bottom:facing=west:shape=straight  %stairs:half=bottom:facing=west:shape=inner_left  %stairs:half=bottom:facing=west:shape=inner_right  %stairs:half=bottom:facing=west:shape=outer_left  %stairs:half=bottom:facing=west:shape=outer_right
+#@BottomStairs
+#%stairs:half=bottom:facing=north:shape=straight %stairs:half=bottom:facing=north:shape=inner_left %stairs:half=bottom:facing=north:shape=inner_right %stairs:half=bottom:facing=north:shape=outer_left %stairs:half=bottom:facing=north:shape=outer_right
+#%stairs:half=bottom:facing=east:shape=straight  %stairs:half=bottom:facing=east:shape=inner_left  %stairs:half=bottom:facing=east:shape=inner_right  %stairs:half=bottom:facing=east:shape=outer_left  %stairs:half=bottom:facing=east:shape=outer_right
+#%stairs:half=bottom:facing=south:shape=straight %stairs:half=bottom:facing=south:shape=inner_left %stairs:half=bottom:facing=south:shape=inner_right %stairs:half=bottom:facing=south:shape=outer_left %stairs:half=bottom:facing=south:shape=outer_right
+#%stairs:half=bottom:facing=west:shape=straight  %stairs:half=bottom:facing=west:shape=inner_left  %stairs:half=bottom:facing=west:shape=inner_right  %stairs:half=bottom:facing=west:shape=outer_left  %stairs:half=bottom:facing=west:shape=outer_right
 #
-# @TopStairs
-# %stairs:half=top:facing=north:shape=straight %stairs:half=top:facing=north:shape=inner_left %stairs:half=top:facing=north:shape=inner_right %stairs:half=top:facing=north:shape=outer_left %stairs:half=top:facing=north:shape=outer_right
-# %stairs:half=top:facing=east:shape=straight  %stairs:half=top:facing=east:shape=inner_left  %stairs:half=top:facing=east:shape=inner_right  %stairs:half=top:facing=east:shape=outer_left  %stairs:half=top:facing=east:shape=outer_right
-# %stairs:half=top:facing=south:shape=straight %stairs:half=top:facing=south:shape=inner_left %stairs:half=top:facing=south:shape=inner_right %stairs:half=top:facing=south:shape=outer_left %stairs:half=top:facing=south:shape=outer_right
-# %stairs:half=top:facing=west:shape=straight  %stairs:half=top:facing=west:shape=inner_left  %stairs:half=top:facing=west:shape=inner_right  %stairs:half=top:facing=west:shape=outer_left  %stairs:half=top:facing=west:shape=outer_right
-
-# @Stairs
-# BottomStairs TopStairs
+#@TopStairs
+#%stairs:half=top:facing=north:shape=straight %stairs:half=top:facing=north:shape=inner_left %stairs:half=top:facing=north:shape=inner_right %stairs:half=top:facing=north:shape=outer_left %stairs:half=top:facing=north:shape=outer_right
+#%stairs:half=top:facing=east:shape=straight  %stairs:half=top:facing=east:shape=inner_left  %stairs:half=top:facing=east:shape=inner_right  %stairs:half=top:facing=east:shape=outer_left  %stairs:half=top:facing=east:shape=outer_right
+#%stairs:half=top:facing=south:shape=straight %stairs:half=top:facing=south:shape=inner_left %stairs:half=top:facing=south:shape=inner_right %stairs:half=top:facing=south:shape=outer_left %stairs:half=top:facing=south:shape=outer_right
+#%stairs:half=top:facing=west:shape=straight  %stairs:half=top:facing=west:shape=inner_left  %stairs:half=top:facing=west:shape=inner_right  %stairs:half=top:facing=west:shape=outer_left  %stairs:half=top:facing=west:shape=outer_right
+#
+#@Stairs
+#BottomStairs TopStairs
+#
+#+hardcodedID;=999999
+#TopStairs:facing=north
 
 @Slabs
 %slabs

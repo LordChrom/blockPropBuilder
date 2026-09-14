@@ -8,6 +8,8 @@ The text after the first character again has leading and trailing whitespace str
 If the first character does not specify an operation or a comment,
     then the most recently specified operation is treated as a list of identifiers, separated by spaces, on which to
     perform the operation.
+
+If different values are assignend to the same property of a block state, the latter assignment takes precedence
 -------------------------------
 + sets name of current property to the argument
 	optionally, '&' may be used as a separator to set multiple properties at once
@@ -18,8 +20,7 @@ If the first character does not specify an operation or a comment,
 = sets the current property value to the argument, while retaining property name
 	provided identifiers will have the named property set to the argument of this statement
 
-- identical to plus, except that the property value is set to null, which makes a property be treated as unset,
-	also prevents this property from being inherited from item's ancestors
+- identical to plus, except that the property value is set to null, which makes a property be treated as unset
 
 ; anywhere in line, splits line into multiple statements
 

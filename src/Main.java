@@ -8,6 +8,7 @@ import java.util.List;
 public class Main {
 	static HashMap<String, PropertyHolder> blockMap = new HashMap<>();
 	static HashMap<Integer,HashSet<String>> assignedIDs = new HashMap<>();
+	private static long precedence = 0;
 
 
 	enum Operation {PropertySetting,PropertyRemoval,GroupForming};
@@ -57,7 +58,7 @@ public class Main {
 		PropertyHolder properties = blockMap.get(block);
 		for(String property: propertyName.split("&")) {
 			property=property.strip();
-			properties.put(property, propertyValue, state);
+			properties.put(property, propertyValue, state,precedence);
 
 			String print;
 			if(propertyValue==null)
@@ -108,6 +109,7 @@ public class Main {
 		while(s.hasNextLine()){
 			String inputLine = s.nextLine().strip();
 			for(String line: inputLine.split(";")){
+				precedence++;
 				line = line.strip();
 				if(line.isEmpty()) continue;
 
@@ -121,7 +123,7 @@ public class Main {
 					}
 					case '-' -> {
 						propertyName = lineArgument;
-						propertyValue=PropertyHolder.inheritableNull;
+						propertyValue=null;
 					}
 					case '=' -> {
 						propertyValue = lineArgument;
@@ -151,6 +153,7 @@ public class Main {
 			if(blockHolder.isGroup)
 				continue;
 			for(PropertyHolder stateHolder: blockHolder.getAllStates()) {
+				String debugstr = block+":"+stateHolder.state;
 				int id = NumberAssigner.assignNumber(stateHolder);
 				if (!assignedIDs.containsKey(id))
 					assignedIDs.put(id, new HashSet<>());

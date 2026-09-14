@@ -7,8 +7,8 @@ public class Blockstate {
 
 	private final HashMap<String,String> tagValues;
 
+	//if this state has every value set by the pattern
 	public boolean matches(Blockstate pattern){
-
 		for(Map.Entry<String,String> patternEntry: pattern.tagValues.entrySet()){
 			String personalValue = tagValues.get(patternEntry.getKey());
 			if(!patternEntry.getValue().equals(personalValue))
@@ -46,7 +46,6 @@ public class Blockstate {
 				tagValues.put(assignmentValues[0],assignmentValues[1]);
 			}
 		}
-
 	}
 
 	public Blockstate deduplicate(){

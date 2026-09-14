@@ -1,11 +1,22 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+
 
 @SuppressWarnings("unused")
 public class PropertyHolder {
-	public static final String inheritableNull = "InheritableNullValue!!!!!!!";
-	HashMap<Blockstate,HashMap<String,String>> blockstatePropertiesMap;
+	record PropertyAssignment(String value, long precedence) {
+		public static PropertyAssignment best(PropertyAssignment a, PropertyAssignment b){
+			if(b==null) return a;
+			if(a==null) return b;
+			return a.precedence>=b.precedence?a:b;
+		}
+	}
+
+	private static final PropertyAssignment noAssignment = new PropertyAssignment(null,Long.MIN_VALUE);
+
+	HashMap<Blockstate,HashMap<String,PropertyAssignment>> blockstatePropertiesMap;
 	private HashMap<Blockstate,HashSet<PropertyHolder>> parents;
 	public Blockstate state = Blockstate.of("");
 	public boolean isGroup = false;
@@ -20,44 +31,36 @@ public class PropertyHolder {
 		}
 	}
 
-	public void put(String propertyName, String value, Blockstate state){
+	public void put(String propertyName, String value, Blockstate state, long precedence){
 		ensureState(state);
-		blockstatePropertiesMap.get(state).put(propertyName,value);
+		blockstatePropertiesMap.get(state).put(propertyName,new PropertyAssignment(value,precedence));
 	}
 
-	public String rawGet(String property, Blockstate blockstate){
-		if(blockstatePropertiesMap==null)
-			return null;
-		HashMap<String,String> stateProperties = blockstatePropertiesMap.get(blockstate);
-		if(stateProperties==null)
-			return null;
+	public PropertyAssignment rawGet(String property, Blockstate blockstate){
+		PropertyAssignment best = noAssignment;
 
-		return stateProperties.get(property);
+		if(blockstatePropertiesMap!=null)
+			for(HashMap<String,PropertyAssignment> map: getPropertyAssignments(blockstate))
+				best= PropertyAssignment.best(best, map.get(property));
+
+		return best;
+	}
+
+	public PropertyAssignment getAssignment(String property, Blockstate blockstate){
+		PropertyAssignment bestAssignment = rawGet(property, blockstate);
+
+		for (PropertyHolder parent : getMatchingParents(blockstate)) {
+			bestAssignment = PropertyAssignment.best(
+					bestAssignment,
+					parent.getAssignment(property, blockstate)
+			);
+		}
+
+		return bestAssignment;
 	}
 
 	public String get(String property, Blockstate blockstate){
-		String prop = rawGet(property, blockstate);
-
-		if(prop==null && !blockstate.isEmpty()) {
-			prop = rawGet(property, Blockstate.EmptyState);
-		}
-
-		if(prop==null && parents != null) {
-			for (Blockstate ancestor : new Blockstate[]{Blockstate.EmptyState, blockstate}) {
-				HashSet<PropertyHolder> parentSet = parents.get(ancestor);
-				if (parentSet != null)
-					for (PropertyHolder parent : parentSet) {
-						prop = parent.get(property, blockstate);
-						if (prop != null)
-							break;
-					}
-			}
-		}
-
-		if(prop==inheritableNull)
-			return null;
-
-		return prop;
+		return getAssignment(property, blockstate).value;
 	}
 
 	public String get(String property){
@@ -104,19 +107,38 @@ public class PropertyHolder {
 		stateParents.add(p);
 	}
 
+	public ArrayList<PropertyHolder> getMatchingParents(Blockstate state){
+		HashSet<PropertyHolder> ret = new HashSet<>();
+		if(parents!=null){
+			for(Map.Entry<Blockstate,HashSet<PropertyHolder>> parent : parents.entrySet()){
+				if(state.matches(parent.getKey()))
+					ret.addAll(parent.getValue());
+			}
+		}
+		return new ArrayList<>(ret);
+	}
+
+	public ArrayList<HashMap<String,PropertyAssignment>> getPropertyAssignments(Blockstate state){
+		ArrayList<HashMap<String,PropertyAssignment>> ret = new ArrayList<>();
+		if(blockstatePropertiesMap==null)
+			return ret;
+		for(Map.Entry<Blockstate,HashMap<String,PropertyAssignment>> parent : blockstatePropertiesMap.entrySet()){
+			if(state.matches(parent.getKey()))
+				ret.add(parent.getValue());
+		}
+		return ret;
+	}
+
 	private void addAllStatesToList(ArrayList<Blockstate> ret){
 		if(blockstatePropertiesMap!=null){
 			for(Blockstate state: blockstatePropertiesMap.keySet()){
-				if(!state.isEmpty()){
+				if(!state.isEmpty())
 					ret.add(state);
-				}
 				if(parents==null)
 					continue;
 
-				HashSet<PropertyHolder> stateParents = parents.get(state);
-				if(stateParents!=null)
-					for(PropertyHolder parent: stateParents)
-						parent.addAllStatesToList(ret);
+				for(PropertyHolder parent: getMatchingParents(state))
+					parent.addAllStatesToList(ret);
 			}
 		}
 	}
