@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+@SuppressWarnings("unused")
 public class PropertyHolder {
 	public static final String inheritableNull = "InheritableNullValue!!!!!!!";
 	HashMap<String,HashMap<String,String>> blockstatePropertiesMap;
@@ -24,21 +25,14 @@ public class PropertyHolder {
 		blockstatePropertiesMap.get(blockstate).put(propertyName,value);
 	}
 
-	public void remove(String propertyName, String blockstate){
-		put(propertyName,inheritableNull,blockstate);
-	}
-
 	public String rawGet(String property, String blockstate){
 		if(blockstatePropertiesMap==null)
 			return null;
 		HashMap<String,String> stateProperties = blockstatePropertiesMap.get(blockstate);
 		if(stateProperties==null)
 			return null;
-		String prop = stateProperties.get(property);
-		if(prop==null)
-			return null;
 
-		return prop;
+		return stateProperties.get(property);
 	}
 
 	public String get(String property, String blockstate){
@@ -102,6 +96,7 @@ public class PropertyHolder {
 		}
 
 		HashSet<PropertyHolder> stateParents = parents.get(state);
+		//noinspection Java8MapApi
 		if(stateParents==null){
 			stateParents = new HashSet<>(2);
 			parents.put(state,stateParents);

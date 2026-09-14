@@ -2,6 +2,10 @@
 =55498; end_portal end_gateway
 
 
+@CaveVines
+    cave_vines:berries=true cave_vines_plant:berries=true
+    cave_vines:berries=false cave_vines_plant:berries=false
+    %cave_vines
 
 @ChargedRespawnAnchor
     respawn_anchor:charges=1 respawn_anchor:charges=2 respawn_anchor:charges=3 respawn_anchor:charges=4
@@ -55,7 +59,7 @@
     %replaceable
     glass
 
-    cave_vines:berries=true cave_vines_plant:berries=true
+    CaveVines
     light
 
     brewing_stand
@@ -75,7 +79,7 @@
     short_grass leaf_litter kelp_plant bush vine
     crimson_roots crimson_fungus warped_roots warped_fungus
     twisting_vines twisting_vines_plant weeping_vines weeping_vines_plant
-    seagrass tall_seagrass %underwater_bonemeals %cave_vines small_dripleaf
+    seagrass tall_seagrass %underwater_bonemeals CaveVines:berries=false small_dripleaf
     nether_wart
 
 +shaped
@@ -100,7 +104,7 @@
     =07; SoulExposedFireLights
     =08; CopperExposedFireLights
     =09; redstone_torch redstone_wall_torch redstone_ore:lit=true
-    =10; cave_vines:berries=true cave_vines_plant:berries=true
+    =10; CaveVines:berries=true
     =11; lava lava_cauldron magma_block
     =12; sculk_sensor:sculk_sensor_phase=inactive sculk_sensor:sculk_sensor_phase=cooldown sculk_catalyst:bloom=false
     =13; sculk_sensor:sculk_sensor_phase=active sculk_catalyst:bloom=true

@@ -26,9 +26,13 @@ public class Main {
 		blockMap.put(block,newHolder);
 	}
 
+	static boolean isGroup(String identifier){
+		PropertyHolder prop = blockMap.get(identifier.split(":")[0]);
+		if(prop==null) return false;
+		return prop.isGroup;
+	}
+
 	static String ensurePrefixed(String block){
-		if(blockMap.containsKey(block))
-			return block;
 		boolean validPrefix = false;
 		char firstChar = block.charAt(0);
 		boolean firstCharIsAlpha = Character.isAlphabetic(firstChar);
@@ -51,7 +55,7 @@ public class Main {
 
 	static void applyProperty(String block, String state){
 		PropertyHolder properties = blockMap.get(block);
-		for(String property: propertyName.split("[&]")) {
+		for(String property: propertyName.split("&")) {
 			property=property.strip();
 			properties.put(property, propertyValue, state);
 
@@ -78,9 +82,15 @@ public class Main {
 	static void applyOperation(String block){
 		if(propertyName.isEmpty() || block.isEmpty())
 			return;
-		block = ensurePrefixed(block);
+		boolean group = isGroup(block);
+		if(!group){
+			block = ensurePrefixed(block);
+		}
+
 		String state = "";
-		int blockstateChar = block.indexOf(':',block.indexOf(':')+1);
+		int blockstateChar = block.indexOf(':');
+		if(!group)
+			blockstateChar = block.indexOf(':',blockstateChar+1);
 		if(blockstateChar>0){
 			state=block.substring(blockstateChar);
 			block=block.substring(0,blockstateChar);

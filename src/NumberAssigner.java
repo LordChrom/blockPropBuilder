@@ -12,7 +12,7 @@ public class NumberAssigner {
 		boolean translucent = p.has("translucentColor");
 		boolean transparent = p.has("transparent");
 		boolean subsurface = p.has("subsurface");
-		boolean shaped = p.has("shaped") ||  p.has("shapedNonVanilla");;
+		boolean shaped = p.has("shaped") ||  p.has("shapedNonVanilla");
 		boolean emissive = p.has("emissiveColor");
 
 		int lightType = emissive?2:0;
