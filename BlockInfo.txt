@@ -91,54 +91,52 @@
 
 
 +emissiveColor
-    =984; LitCopperBulbs redstone_lamp:lit=true brewing_stand
-    =985; TrialBlocksActiveNormal EnclosedFlames
-    =838; ChargedRespawnAnchor dragon_egg crying_obsidian
-    =729; AmethystBuds calibrated_sculk_sensor
-    =079; TrialBlocksActiveOminous
-    =851; NormalExposedFireLights
-    =399; SoulExposedFireLights
-    =495; CopperExposedFireLights
-
-    =922; redstone_torch redstone_wall_torch redstone_ore:lit=true
-    =552; cave_vines:berries=true cave_vines_plant:berries=true
-    =941; lava lava_cauldron magma_block
-    =035; sculk_sensor:sculk_sensor_phase=inactive sculk_sensor:sculk_sensor_phase=cooldown sculk_catalyst:bloom=false
-    =069; sculk_sensor:sculk_sensor_phase=active  sculk_catalyst:bloom=true
-    =589; sea_lantern conduit
-    =565; glow_lichen red_mushroom brown_mushroom
-    =498; end_portal end_gateway
-    =221; light
-    =763; glowstone
-    =741; shroomlight
-    =777; beacon end_rod
-    =498; end_portal_frame ender_chest
-    =709; nether_portal
-    =297; sea_pickle:waterlogged=true
-    =687; enchanting_table
-    =798; firefly_bush
-    =886; ochre_froglight
-    =686; verdant_froglight
-    =757; pearlescent_froglight
+    =01; LitCopperBulbs glowstone redstone_lamp:lit=true brewing_stand
+    =02; TrialBlocksActiveNormal EnclosedFlames
+    =03; ChargedRespawnAnchor dragon_egg crying_obsidian
+    =04; AmethystBuds calibrated_sculk_sensor
+    =05; TrialBlocksActiveOminous
+    =06; NormalExposedFireLights
+    =07; SoulExposedFireLights
+    =08; CopperExposedFireLights
+    =09; redstone_torch redstone_wall_torch redstone_ore:lit=true
+    =10; cave_vines:berries=true cave_vines_plant:berries=true
+    =11; lava lava_cauldron magma_block
+    =12; sculk_sensor:sculk_sensor_phase=inactive sculk_sensor:sculk_sensor_phase=cooldown sculk_catalyst:bloom=false
+    =13; sculk_sensor:sculk_sensor_phase=active sculk_catalyst:bloom=true
+    =14; sea_lantern conduit
+    =15; glow_lichen red_mushroom brown_mushroom
+    =16; end_portal end_gateway
+    =17; light
+    =18; shroomlight
+    =19; beacon end_rod
+    =20; end_portal_frame ender_chest
+    =21; nether_portal
+    =22; sea_pickle:waterlogged=true
+    =23; enchanting_table
+    =24; firefly_bush
+    =25; ochre_froglight
+    =26; verdant_froglight
+    =27; pearlescent_froglight
 
 
 +translucentColor
-    =777; white_stained_glass white_stained_glass_pane
-    =864; orange_stained_glass orange_stained_glass_pane
-    =747; magenta_stained_glass magenta_stained_glass_pane
-    =668; light_blue_stained_glass light_blue_stained_glass_pane
-    =873; yellow_stained_glass yellow_stained_glass_pane
-    =584; lime_stained_glass lime_stained_glass_pane
-    =867; pink_stained_glass pink_stained_glass_pane
-    =333; gray_stained_glass gray_stained_glass_pane
-    =555; light_gray_stained_glass light_gray_stained_glass_pane
-    =467; cyan_stained_glass cyan_stained_glass_pane
-    =648; purple_stained_glass purple_stained_glass_pane
-    =337; blue_stained_glass blue_stained_glass_pane
-    =752; brown_stained_glass brown_stained_glass_pane
-    =262; green_stained_glass green_stained_glass_pane
-    =722; red_stained_glass red_stained_glass_pane
-    =222; black_stained_glass black_stained_glass_pane
+    =32; white_stained_glass white_stained_glass_pane
+    =33; orange_stained_glass orange_stained_glass_pane
+    =34; magenta_stained_glass magenta_stained_glass_pane
+    =35; light_blue_stained_glass light_blue_stained_glass_pane
+    =36; yellow_stained_glass yellow_stained_glass_pane
+    =37; lime_stained_glass lime_stained_glass_pane
+    =38; pink_stained_glass pink_stained_glass_pane
+    =49; gray_stained_glass gray_stained_glass_pane
+    =40; light_gray_stained_glass light_gray_stained_glass_pane
+    =41; cyan_stained_glass cyan_stained_glass_pane
+    =42; purple_stained_glass purple_stained_glass_pane
+    =43; blue_stained_glass blue_stained_glass_pane
+    =44; brown_stained_glass brown_stained_glass_pane
+    =45; green_stained_glass green_stained_glass_pane
+    =46; red_stained_glass red_stained_glass_pane
+    =47; black_stained_glass black_stained_glass_pane
 
 
 
