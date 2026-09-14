@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 
 
 @SuppressWarnings("unused")
@@ -129,13 +130,17 @@ public class PropertyHolder {
 		return ret;
 	}
 
-	private void addAllStatesToList(ArrayList<Blockstate> ret){
+	private void addAllStatesToList(HashMap<String,HashSet<String>> ret){
 		if(blockstatePropertiesMap!=null){
 			for(Blockstate state: blockstatePropertiesMap.keySet()){
-				if(!state.isEmpty())
-					ret.add(state);
-				if(parents==null)
-					continue;
+				for(Entry<String,String> entry : state.getEntries()){
+					if(!ret.containsKey(entry.getKey()))
+						ret.put(entry.getKey(),new HashSet<>());
+
+					ret.get(entry.getKey()).add(entry.getValue());
+				}
+
+				if(parents==null) continue;
 
 				for(PropertyHolder parent: getMatchingParents(state))
 					parent.addAllStatesToList(ret);
@@ -144,15 +149,29 @@ public class PropertyHolder {
 	}
 
 	public ArrayList<PropertyHolder> getAllStates(){
-		ArrayList<Blockstate> states = new ArrayList<>();
-		addAllStatesToList(states);
+		HashMap<String,HashSet<String>> stateFieldValues = new HashMap<>();
+		addAllStatesToList(stateFieldValues);
+
+		ArrayList<String> stateValueCombinations = new ArrayList<>();
+		stateValueCombinations.add("");
+
+		for(Entry<String,HashSet<String>> blockstateField: stateFieldValues.entrySet()){
+			ArrayList<String> swap = new ArrayList<>();
+			for(String fieldValue : blockstateField.getValue()){
+				for(String stateCombo : stateValueCombinations){
+					swap.add(stateCombo+":"+blockstateField.getKey()+"="+fieldValue);
+				}
+			}
+			stateValueCombinations=swap;
+		}
+
 
 		ArrayList<PropertyHolder> ret = new ArrayList<>();
-		for(Blockstate state: states){
+		for(String stateName: stateValueCombinations){
 			PropertyHolder stateHolder = new PropertyHolder();
-			stateHolder.name = "view of "+name+" from "+state;
+			stateHolder.name = "view of "+name+" from "+stateName;
 			stateHolder.addParent(this,Blockstate.EmptyState);
-			stateHolder.state=state;
+			stateHolder.state=Blockstate.of(stateName);;
 			ret.add(stateHolder);
 		}
 

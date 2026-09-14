@@ -13,14 +13,11 @@
 @AmethystBuds
     amethyst_cluster large_amethyst_bud small_amethyst_bud medium_amethyst_bud
 
-@TrialBlocksActiveOminous
-    trial_spawner:ominous=true:trial_spawner_state=active trial_spawner:ominous=true:trial_spawner_state=ejecting_reward trial_spawner:ominous=true:trial_spawner_state=waiting_for_reward_ejection
-    vault:ominous=true:vault_state=active vault:ominous=true:vault_state=ejecting vault:ominous=true:vault_state=unlocking
-@TrialBlocksActiveNormal
-    trial_spawner:ominous=false:trial_spawner_state=active trial_spawner:ominous=false:trial_spawner_state=ejecting_reward trial_spawner:ominous=false:trial_spawner_state=waiting_for_reward_ejection
-    vault:ominous=false:vault_state=active vault:ominous=false:vault_state=ejecting vault:ominous=false:vault_state=unlocking
+@TrialBlocksActive
+    trial_spawner:trial_spawner_state=active trial_spawner:trial_spawner_state=ejecting_reward trial_spawner:trial_spawner_state=waiting_for_reward_ejection
+    vault:vault_state=active vault:vault_state=ejecting vault:vault_state=unlocking
 @TrialBlocks
-    TrialBlocksActiveOminous TrialBlocksActiveNormal
+    TrialBlocksActive
     trial_spawner:trial_spawner_state=cooldown trial_spawner:trial_spawner_state=inactive trial_spawner:trial_spawner_state=waiting_for_players
     vault:vault_state=inactive
 
@@ -126,10 +123,10 @@
 
 +emissiveColor
     =01; LitCopperBulbs glowstone redstone_lamp:lit=true brewing_stand
-    =02; TrialBlocksActiveNormal EnclosedFlames
+    =02; TrialBlocksActive:ominous=false EnclosedFlames
     =03; ChargedRespawnAnchor dragon_egg crying_obsidian
     =04; AmethystBuds calibrated_sculk_sensor
-    =05; TrialBlocksActiveOminous
+    =05; TrialBlocksActive:ominous=true
     =06; NormalExposedFireLights
     =07; SoulExposedFireLights
     =08; CopperExposedFireLights
@@ -155,22 +152,22 @@
 
 
 +translucentColor
-    =32; white_stained_glass white_stained_glass_pane
-    =33; orange_stained_glass orange_stained_glass_pane
-    =34; magenta_stained_glass magenta_stained_glass_pane
-    =35; light_blue_stained_glass light_blue_stained_glass_pane
-    =36; yellow_stained_glass yellow_stained_glass_pane
-    =37; lime_stained_glass lime_stained_glass_pane
-    =38; pink_stained_glass pink_stained_glass_pane
-    =49; gray_stained_glass gray_stained_glass_pane
-    =40; light_gray_stained_glass light_gray_stained_glass_pane
-    =41; cyan_stained_glass cyan_stained_glass_pane
-    =42; purple_stained_glass purple_stained_glass_pane
-    =43; blue_stained_glass blue_stained_glass_pane
-    =44; brown_stained_glass brown_stained_glass_pane
-    =45; green_stained_glass green_stained_glass_pane
-    =46; red_stained_glass red_stained_glass_pane
-    =47; black_stained_glass black_stained_glass_pane
+    =48; white_stained_glass white_stained_glass_pane
+    =49; orange_stained_glass orange_stained_glass_pane
+    =50; magenta_stained_glass magenta_stained_glass_pane
+    =51; light_blue_stained_glass light_blue_stained_glass_pane
+    =52; yellow_stained_glass yellow_stained_glass_pane
+    =53; lime_stained_glass lime_stained_glass_pane
+    =54; pink_stained_glass pink_stained_glass_pane
+    =55; gray_stained_glass gray_stained_glass_pane
+    =56; light_gray_stained_glass light_gray_stained_glass_pane
+    =57; cyan_stained_glass cyan_stained_glass_pane
+    =58; purple_stained_glass purple_stained_glass_pane
+    =59; blue_stained_glass blue_stained_glass_pane
+    =60; brown_stained_glass brown_stained_glass_pane
+    =61; green_stained_glass green_stained_glass_pane
+    =62; red_stained_glass red_stained_glass_pane
+    =63; black_stained_glass black_stained_glass_pane
 
 
 
@@ -182,7 +179,7 @@
 
 =4 ;#Flicker like fire
     ExposedFireLights EnclosedFlames
-    TrialBlocksActiveOminous TrialBlocksActiveNormal
+    TrialBlocksActive
 
 -lightAnimation;
     vault

@@ -62,11 +62,11 @@ public class Main {
 
 			String print;
 			if(propertyValue==null)
-				print = "Removed "+property+" from ";
+				print = "Removed "+property+" from: ";
 			else
-				print = "Applied "+property+(propertyValue.isEmpty()?"":"=")+propertyValue+" to ";
+				print = "Applied "+property+(propertyValue.isEmpty()?"":"=")+propertyValue+" to: ";
 
-			print+="block: "+block;
+			print+=block;
 			if(!state.isEmpty())
 				print+=", blockstate: "+state;
 			print+=".";

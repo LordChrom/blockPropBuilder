@@ -1,5 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class Blockstate {
 	private static final HashMap<String,Blockstate> allBlockstates  = new HashMap<>();
@@ -66,6 +68,10 @@ public class Blockstate {
 			return recordedState;
 		newState.register();
 		return newState;
+	}
+
+	public Set<Entry<String,String>> getEntries(){
+		return tagValues.entrySet();
 	}
 
 	public boolean isEmpty(){
