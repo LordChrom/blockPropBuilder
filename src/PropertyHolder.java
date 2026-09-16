@@ -82,8 +82,20 @@ public class PropertyHolder {
 
 	public int getIntOrDefault(String property, int fallback){
 		String prop = get(property);
+		if(prop==null)
+			return fallback;
+		prop=prop.replaceAll("[_ ,]","");
 		try {
-			return Integer.parseInt(prop);
+			int base = 10;
+			if(prop.length()>=2)
+				switch(prop.substring(0,2)){
+					case "0b" -> base=2;
+					case "0o" -> base=8;
+					case "0x" -> base=16;
+				}
+			if(base!=10)
+				prop=prop.substring(2);
+			return Integer.parseInt(prop,base);
 		} catch (NumberFormatException e) {
 			return fallback;
 		}

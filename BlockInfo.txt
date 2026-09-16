@@ -46,23 +46,8 @@
     furnace:lit=true blast_furnace:lit=true smoker:lit=true
     jack_o_lantern lantern
 
-#@BottomStairs
-#%stairs:half=bottom:facing=north:shape=straight %stairs:half=bottom:facing=north:shape=inner_left %stairs:half=bottom:facing=north:shape=inner_right %stairs:half=bottom:facing=north:shape=outer_left %stairs:half=bottom:facing=north:shape=outer_right
-#%stairs:half=bottom:facing=east:shape=straight  %stairs:half=bottom:facing=east:shape=inner_left  %stairs:half=bottom:facing=east:shape=inner_right  %stairs:half=bottom:facing=east:shape=outer_left  %stairs:half=bottom:facing=east:shape=outer_right
-#%stairs:half=bottom:facing=south:shape=straight %stairs:half=bottom:facing=south:shape=inner_left %stairs:half=bottom:facing=south:shape=inner_right %stairs:half=bottom:facing=south:shape=outer_left %stairs:half=bottom:facing=south:shape=outer_right
-#%stairs:half=bottom:facing=west:shape=straight  %stairs:half=bottom:facing=west:shape=inner_left  %stairs:half=bottom:facing=west:shape=inner_right  %stairs:half=bottom:facing=west:shape=outer_left  %stairs:half=bottom:facing=west:shape=outer_right
-#
-#@TopStairs
-#%stairs:half=top:facing=north:shape=straight %stairs:half=top:facing=north:shape=inner_left %stairs:half=top:facing=north:shape=inner_right %stairs:half=top:facing=north:shape=outer_left %stairs:half=top:facing=north:shape=outer_right
-#%stairs:half=top:facing=east:shape=straight  %stairs:half=top:facing=east:shape=inner_left  %stairs:half=top:facing=east:shape=inner_right  %stairs:half=top:facing=east:shape=outer_left  %stairs:half=top:facing=east:shape=outer_right
-#%stairs:half=top:facing=south:shape=straight %stairs:half=top:facing=south:shape=inner_left %stairs:half=top:facing=south:shape=inner_right %stairs:half=top:facing=south:shape=outer_left %stairs:half=top:facing=south:shape=outer_right
-#%stairs:half=top:facing=west:shape=straight  %stairs:half=top:facing=west:shape=inner_left  %stairs:half=top:facing=west:shape=inner_right  %stairs:half=top:facing=west:shape=outer_left  %stairs:half=top:facing=west:shape=outer_right
-#
-#@Stairs
-#BottomStairs TopStairs
-#
-#+hardcodedID;=999999
-#TopStairs:facing=north
+@Stairs
+%stairs
 
 @Slabs
 %slabs
@@ -73,6 +58,22 @@
 @Walls
 %walls
 
+@Fences
+%fences
+
+@Bars
+    iron_bars %bars
+
+@TranslucentPanes
+    white_stained_glass_pane orange_stained_glass_pane magenta_stained_glass_pane light_blue_stained_glass_pane
+    yellow_stained_glass_pane lime_stained_glass_pane pink_stained_glass_pane gray_stained_glass_pane
+    light_gray_stained_glass_pane cyan_stained_glass_pane purple_stained_glass_pane blue_stained_glass_pane
+    brown_stained_glass_pane green_stained_glass_pane red_stained_glass_pane black_stained_glass_pane
+
+
+@Fencelike
+    Fences TranslucentPanes Bars glass_pane
+
 @LayerShaped
 
 
@@ -80,6 +81,8 @@
 #----
 
 +transparent
+    glass_pane
+
     AmethystBuds
     TrialBlocks
     ExposedFireLights
@@ -184,3 +187,35 @@
 =4 ;#Flicker like fire
     ExposedFireLights EnclosedFlames
     TrialSpawnerActive
+
+
++shapeCategory
+=1; Stairs:half=top Slabs:type=top
+=2; Stairs:half=bottom Slabs:type=bottom
+=3; Trapdoors
+=4; Layers
+
++shapeSubcategory
+    #in order, occupancy of the -x-z, +x-z, -x+z, +x+z corners of the free half of the slab/stair
+
+    =0; Slabs
+    =0b 10 00; Stairs:facing=west:shape=outer_right Stairs:facing=north:shape=outer_left
+    =0b 01 00; Stairs:facing=north:shape=outer_right Stairs:facing=east:shape=outer_left
+    =0b 00 10; Stairs:facing=south:shape=outer_right Stairs:facing=west:shape=outer_left
+    =0b 00 01; Stairs:facing=east:shape=outer_right Stairs:facing=south:shape=outer_left
+    =0b 11 00; Stairs:facing=north:shape=straight
+    =0b 01 01; Stairs:facing=east:shape=straight
+    =0b 00 11; Stairs:facing=south:shape=straight
+    =0b 10 10; Stairs:facing=west:shape=straight
+    =0b 11 10; Stairs:facing=west:shape=outer_right Stairs:facing=north:shape=outer_left
+    =0b 11 01; Stairs:facing=north:shape=outer_right Stairs:facing=east:shape=outer_left
+    =0b 10 11; Stairs:facing=south:shape=outer_right Stairs:facing=west:shape=outer_left
+    =0b 01 11; Stairs:facing=east:shape=outer_right Stairs:facing=south:shape=outer_left
+
+    #axis number of face covered by trapdoor (may be backwards)
+    =1; Trapdoors:open=true:facing=east  ;#-x
+    =0; Trapdoors:open=true:facing=west  ;#+x
+    =3; Trapdoors:open=false:half=bottom ;#-y
+    =2; Trapdoors:open=false:half=top    ;#+y
+    =5; Trapdoors:open=true:facing=south ;#-z
+    =4; Trapdoors:open=true:facing=north ;#+z
