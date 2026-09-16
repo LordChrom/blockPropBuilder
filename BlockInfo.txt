@@ -74,9 +74,10 @@
 @Fencelike
     Fences TranslucentPanes Bars glass_pane
 
-@LayerShaped
+@Layers
 
-
++dummy
+    DefaultBlock
 
 #----
 
@@ -115,7 +116,7 @@
     seagrass tall_seagrass %underwater_bonemeals CaveVines:berries=false small_dripleaf
     nether_wart
 
-+shaped
++shapedVanilla
     %slabs %stairs
     end_portal_frame snow farmland dirt_path stonecutter enchanting_table daylight_detector
     piston sticky_piston piston_head
@@ -123,42 +124,50 @@
     lectern
 
 +shapedNonVanilla
-     %trapdoors %wool_carpets %walls
+     %trapdoors %wool_carpets
      moss_carpet pale_moss_carpet repeater comparator azalea flowering_azalea
 
 
-+emissiveColor
+=4 ;#Flicker like fire
+    ExposedFireLights EnclosedFlames
+    TrialSpawnerActive
+
++color
     =01; LitCopperBulbs glowstone redstone_lamp:lit=true brewing_stand
-    =02; TrialBlocksActive:ominous=false EnclosedFlames     ;# sometimes fllickers
+    =02; TrialVaultActive:ominous=false
     =03; ChargedRespawnAnchor dragon_egg crying_obsidian
-    =04; AmethystBuds calibrated_sculk_sensor               ;# always pulsates
-    =05; TrialBlocksActive:ominous=true                     ;# sometimes flickers
-    =06; NormalExposedFireLights                            ;# always flickers
-    =07; SoulExposedFireLights                              ;# always flickers
-    =08; CopperExposedFireLights                            ;# always flickers
-    =09; redstone_torch redstone_wall_torch redstone_ore:lit=true
-    =11; lava lava_cauldron magma_block
-    =12; sculk_sensor:sculk_sensor_phase=inactive sculk_sensor:sculk_sensor_phase=cooldown sculk_catalyst:bloom=false   ;# always pulsates
-    =13; sculk_sensor:sculk_sensor_phase=active sculk_catalyst:bloom=true                                               ;# always pulsates
-    =14; sea_lantern conduit
-    =16; end_portal end_gateway
-    =17; light
-    =18; shroomlight
-    =19; beacon end_rod
-    =20; end_portal_frame ender_chest
-    =21; nether_portal
-    =22; sea_pickle:waterlogged=true
-    =23; enchanting_table
-    =24; firefly_bush
-    =25; ochre_froglight
-    =26; verdant_froglight
-    =27; pearlescent_froglight
+    =04; TrialVaultActive:ominous=true
+    =05; redstone_torch redstone_wall_torch redstone_ore:lit=true
+    =06; lava lava_cauldron magma_block
+    =07; sea_lantern conduit
+    =08; end_portal end_gateway
+    =09; light
+    =10; shroomlight
+    =11; beacon end_rod
+    =12; end_portal_frame ender_chest
+    =13; nether_portal
+    =14; sea_pickle:waterlogged=true
+    =15; enchanting_table
+    =16; firefly_bush
+    =17; ochre_froglight
+    =18; verdant_froglight
+    =19; pearlescent_froglight
+
+    #flickers
+    =32; TrialSpawnerActive:ominous=false EnclosedFlames
+    =33; TrialSpawnerActive:ominous=true
+    =34; NormalExposedFireLights
+    =35; SoulExposedFireLights
+    =36; CopperExposedFireLights
+
+    =40; sculk_sensor:sculk_sensor_phase=inactive sculk_sensor:sculk_sensor_phase=cooldown sculk_catalyst:bloom=false   ;# always pulsates
+    =41; sculk_sensor:sculk_sensor_phase=active sculk_catalyst:bloom=true                                               ;# always pulsates
+    =42; AmethystBuds calibrated_sculk_sensor               ;# always pulsates
 
     =46; CaveVines:berries=true
     =47; glow_lichen red_mushroom brown_mushroom
 
 
-+translucentColor
     =48; white_stained_glass white_stained_glass_pane
     =49; orange_stained_glass orange_stained_glass_pane
     =50; magenta_stained_glass magenta_stained_glass_pane
@@ -178,16 +187,6 @@
 
 
 
-+lightAnimation
-=3 ;#Slowly pulsate
-    AmethystBuds
-    calibrated_sculk_sensor sculk_sensor sculk_catalyst
-
-
-=4 ;#Flicker like fire
-    ExposedFireLights EnclosedFlames
-    TrialSpawnerActive
-
 
 +shapeCategory
 =1; Stairs:half=top Slabs:type=top
@@ -196,7 +195,7 @@
 =4; Layers
 
 +shapeSubcategory
-    #in order, occupancy of the -x-z, +x-z, -x+z, +x+z corners of the free half of the slab/stair
+    #in order, occupancy of the -- +- -+ ++ xz corners of the free half of the slab/stair
 
     =0; Slabs
     =0b 10 00; Stairs:facing=west:shape=outer_right Stairs:facing=north:shape=outer_left
@@ -207,15 +206,15 @@
     =0b 01 01; Stairs:facing=east:shape=straight
     =0b 00 11; Stairs:facing=south:shape=straight
     =0b 10 10; Stairs:facing=west:shape=straight
-    =0b 11 10; Stairs:facing=west:shape=outer_right Stairs:facing=north:shape=outer_left
-    =0b 11 01; Stairs:facing=north:shape=outer_right Stairs:facing=east:shape=outer_left
-    =0b 10 11; Stairs:facing=south:shape=outer_right Stairs:facing=west:shape=outer_left
-    =0b 01 11; Stairs:facing=east:shape=outer_right Stairs:facing=south:shape=outer_left
+    =0b 11 10; Stairs:facing=west:shape=inner_right Stairs:facing=north:shape=inner_left
+    =0b 11 01; Stairs:facing=north:shape=inner_right Stairs:facing=east:shape=inner_left
+    =0b 10 11; Stairs:facing=south:shape=inner_right Stairs:facing=west:shape=inner_left
+    =0b 01 11; Stairs:facing=east:shape=inner_right Stairs:facing=south:shape=inner_left
 
     #axis number of face covered by trapdoor (may be backwards)
-    =1; Trapdoors:open=true:facing=east  ;#-x
-    =0; Trapdoors:open=true:facing=west  ;#+x
-    =3; Trapdoors:open=false:half=bottom ;#-y
-    =2; Trapdoors:open=false:half=top    ;#+y
-    =5; Trapdoors:open=true:facing=south ;#-z
-    =4; Trapdoors:open=true:facing=north ;#+z
+    =0; Trapdoors:open=true:facing=east  ;#-x
+    =1; Trapdoors:open=true:facing=west  ;#+x
+    =2; Trapdoors:open=false:half=bottom ;#-y
+    =3; Trapdoors:open=false:half=top    ;#+y
+    =4; Trapdoors:open=true:facing=south ;#-z
+    =5; Trapdoors:open=true:facing=north ;#+z

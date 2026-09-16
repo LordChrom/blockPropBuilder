@@ -9,31 +9,18 @@ public class NumberAssigner {
 	static int assignNumber(PropertyHolder p){
 		if(p.has("hardcodedID"))
 			return p.getInt("hardcodedID");
-		boolean translucent = p.has("translucentColor");
 		boolean transparent = p.has("transparent");
 		boolean subsurface = p.has("subsurface");
-		boolean shaped = p.has("shaped") ||  p.has("shapedNonVanilla");
-		boolean emissive = p.has("emissiveColor");
 
-		int lightType = emissive?2:0;
+		int shapeData = (p.getIntOrDefault("shapeCategory",0)<<4) + p.getIntOrDefault("shapeSubcategory",0);
 
-		if(p.has("lightAnimation"))
-			lightType = p.getInt("lightAnimation");
+		if(shapeData==0 && !transparent)
+			shapeData=1;
 
-		int shapeType;
+		int color = p.getIntOrDefault("color",0);
+		if(color==0 && subsurface)
+			color=47;
 
-		if(translucent)
-			shapeType=1;
-		else if(shaped)
-			shapeType=3;
-		else if(transparent)
-			shapeType=0;
-		else
-			shapeType=2;
-
-
-		int m = ((lightType&7)<<2) | (shapeType&3);
-		int color = p.getIntOrDefault((translucent?"translucentColor":"emissiveColor"),0);
-		return (m<<6) + (subsurface?47:color);
+		return (shapeData<<6) | color;
 	}
 }
