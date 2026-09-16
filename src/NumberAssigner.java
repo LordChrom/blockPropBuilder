@@ -34,6 +34,6 @@ public class NumberAssigner {
 
 		int m = ((lightType&7)<<2) | (shapeType&3);
 		int color = p.getIntOrDefault((translucent?"translucentColor":"emissiveColor"),0);
-		return m*1000 + (subsurface?47:color);
+		return (m<<6) + (subsurface?47:color);
 	}
 }
