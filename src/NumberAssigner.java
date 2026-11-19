@@ -1,11 +1,8 @@
 public class NumberAssigner {
 	//layout:
-	// number%1000 is color, number/1000 is metadata
-	// leaves 6.03 bits for metadata, also allows 0xffff to not need to be an encoding state, also lets me not change how my colors are set up.
-	// metadata bits are currently:
-	// 1 bit unused
-	// 3 bits light type
-	// 2 bits opacity type (0 is air, 1 is translucent, 2 is full opacity, 3 is shaped opacity)
+	//2 bits unused
+	//8 bits shape
+	//6 bits color
 	static int assignNumber(PropertyHolder p){
 		if(p.has("hardcodedID"))
 			return p.getInt("hardcodedID");

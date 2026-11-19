@@ -55,6 +55,9 @@
 @Trapdoors
 %trapdoors
 
+@Doors
+%doors
+
 @Walls
 %walls
 
@@ -74,7 +77,13 @@
 @Fencelike
     Fences TranslucentPanes Bars glass_pane
 
+@Diodes
+    repeater comparator
+@Carpets
+    moss_carpet pale_moss_carpet %wool_carpets
+
 @Layers
+    snow Diodes Carpets stonecutter sculk_sensor calibrated_sculk_sensor daylight_detector %pressure_plates
 
 +dummy
     DefaultBlock
@@ -124,13 +133,7 @@
     lectern
 
 +shapedNonVanilla
-     %trapdoors %wool_carpets
-     moss_carpet pale_moss_carpet repeater comparator azalea flowering_azalea
-
-
-=4 ;#Flicker like fire
-    ExposedFireLights EnclosedFlames
-    TrialSpawnerActive
+     %trapdoors Carpets repeater comparator azalea flowering_azalea
 
 +color
     =01; LitCopperBulbs glowstone redstone_lamp:lit=true brewing_stand
@@ -191,8 +194,11 @@
 +shapeCategory
 =1; Stairs:half=top Slabs:type=top
 =2; Stairs:half=bottom Slabs:type=bottom
-=3; Trapdoors
+=3; Trapdoors Doors %wooden_shelves
 =4; Layers
+
+-shapeCategory
+    snow:layers=8
 
 +shapeSubcategory
     #in order, occupancy of the -- +- -+ ++ xz corners of the free half of the slab/stair
@@ -212,9 +218,20 @@
     =0b 01 11; Stairs:facing=east:shape=inner_right Stairs:facing=south:shape=inner_left
 
     #axis number of face covered by trapdoor (may be backwards)
-    =0; Trapdoors:open=true:facing=east  ;#-x
-    =1; Trapdoors:open=true:facing=west  ;#+x
+    =0; Trapdoors:open=true:facing=east  %wooden_shelves:facing=east Doors:open=false:facing=east   Doors:open=true:hinge=left:facing=north Doors:open=true:hinge=right:facing=south     ;#-x
+    =1; Trapdoors:open=true:facing=west  %wooden_shelves:facing=west Doors:open=false:facing=west   Doors:open=true:hinge=left:facing=south Doors:open=true:hinge=right:facing=north     ;#+x
     =2; Trapdoors:open=false:half=bottom ;#-y
     =3; Trapdoors:open=false:half=top    ;#+y
-    =4; Trapdoors:open=true:facing=south ;#-z
-    =5; Trapdoors:open=true:facing=north ;#+z
+    =4; Trapdoors:open=true:facing=south %wooden_shelves:facing=south Doors:open=false:facing=south  Doors:open=true:hinge=left:facing=east Doors:open=true:hinge=right:facing=west  ;#-z
+    =5; Trapdoors:open=true:facing=north %wooden_shelves:facing=north Doors:open=false:facing=north  Doors:open=true:hinge=left:facing=west Doors:open=true:hinge=right:facing=east  ;#+z
+
+    #layers (sixteenths)
+    =1;  Carpets %pressure_plates
+    =2;  snow:layers=1 Diodes
+    =4;  snow:layers=2
+    =6;  snow:layers=3 daylight_detector
+    =8;  snow:layers=4 sculk_sensor calibrated_sculk_sensor
+    =9;  stonecutter
+    =10; snow:layers=5
+    =12; snow:layers=6
+    =14; snow:layers=7
