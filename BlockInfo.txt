@@ -85,22 +85,27 @@
 @Layers
     snow Diodes Carpets stonecutter sculk_sensor calibrated_sculk_sensor daylight_detector %pressure_plates
 
+@Cutout
+    glass TrialBlocks %leaves Trapdoors
+
 +dummy
     DefaultBlock
 
 #----
 
++cutout
+    Cutout
+
 +transparent
     glass_pane
 
     AmethystBuds
-    TrialBlocks
     ExposedFireLights
 
     redstone_wire
     lever %buttons
     %replaceable
-    glass
+    Cutout
 
     CaveVines
     light

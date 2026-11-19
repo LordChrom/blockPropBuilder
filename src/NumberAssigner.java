@@ -8,6 +8,7 @@ public class NumberAssigner {
 			return p.getInt("hardcodedID");
 		boolean transparent = p.has("transparent");
 		boolean subsurface = p.has("subsurface");
+		boolean cutout = p.has("cutout");
 
 		int shapeData = (p.getIntOrDefault("shapeCategory",0)<<4) + p.getIntOrDefault("shapeSubcategory",0);
 
@@ -18,6 +19,6 @@ public class NumberAssigner {
 		if(color==0 && subsurface)
 			color=47;
 
-		return (shapeData<<6) | color;
+		return (shapeData<<6) | color | (cutout?0x4000:0);
 	}
 }
