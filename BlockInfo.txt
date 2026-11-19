@@ -30,6 +30,12 @@
     waxed_exposed_copper_bulb:lit=true exposed_copper_bulb:lit=true
     waxed_copper_bulb:lit=true copper_bulb:lit=true
 
+@CopperGrates
+    waxed_oxidized_copper_grate oxidized_copper_grate
+    waxed_weathered_copper_grate weathered_copper_grate
+    waxed_exposed_copper_grate exposed_copper_grate
+    waxed_copper_grate copper_grate
+
 @NormalExposedFireLights
     fire torch wall_torch campfire %candle_cakes %candles
 
@@ -86,7 +92,7 @@
     snow Diodes Carpets stonecutter sculk_sensor calibrated_sculk_sensor daylight_detector %pressure_plates
 
 @Cutout
-    glass TrialBlocks %leaves Trapdoors
+    glass TrialBlocks %leaves Trapdoors Doors CopperGrates
 
 +dummy
     DefaultBlock
