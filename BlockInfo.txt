@@ -89,7 +89,7 @@
     moss_carpet pale_moss_carpet %wool_carpets
 
 @Layers
-    snow Diodes Carpets stonecutter sculk_sensor calibrated_sculk_sensor daylight_detector %pressure_plates
+    snow Diodes Carpets stonecutter sculk_sensor calibrated_sculk_sensor daylight_detector %pressure_plates redstone_wire
 
 @Cutout
     glass TrialBlocks %leaves Trapdoors Doors CopperGrates
@@ -237,7 +237,7 @@
     =5; Trapdoors:open=true:facing=north %wooden_shelves:facing=north Doors:open=false:facing=north  Doors:open=true:hinge=left:facing=west Doors:open=true:hinge=right:facing=east  ;#+z
 
     #layers (sixteenths)
-    =1;  Carpets %pressure_plates
+    =1;  Carpets %pressure_plates redstone_wire
     =2;  snow:layers=1 Diodes
     =4;  snow:layers=2
     =6;  snow:layers=3 daylight_detector

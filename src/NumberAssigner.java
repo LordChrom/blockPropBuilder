@@ -19,6 +19,6 @@ public class NumberAssigner {
 		if(color==0 && subsurface)
 			color=47;
 
-		return (shapeData<<6) | color | (cutout?0x4000:0);
+		return (shapeData<<6) | color;
 	}
 }
