@@ -8,7 +8,6 @@ public class NumberAssigner {
 			return p.getInt("hardcodedID");
 		boolean transparent = p.has("transparent");
 		boolean subsurface = p.has("subsurface");
-		boolean cutout = p.has("cutout");
 
 		int shapeData = (p.getIntOrDefault("shapeCategory",0)<<4) + p.getIntOrDefault("shapeSubcategory",0);
 

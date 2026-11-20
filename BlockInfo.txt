@@ -1,5 +1,6 @@
 +hardcodedID
 =55498; end_portal end_gateway
+=960; grass_block
 
 
 @CaveVines
