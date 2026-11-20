@@ -184,7 +184,6 @@ public class Main {
 	static void copyToClipboard(String text){
 		StringSelection selection = new StringSelection(text);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection,selection);
-
 	}
 
 	public static void main(String[] args) {

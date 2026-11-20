@@ -37,6 +37,11 @@
     waxed_exposed_copper_grate exposed_copper_grate
     waxed_copper_grate copper_grate
 
+
+
+@StandingTorches
+    torch soul_torch copper_torch redstone_torch
+
 @NormalExposedFireLights
     fire torch wall_torch campfire %candle_cakes %candles
 
@@ -94,6 +99,9 @@
 
 @Cutout
     glass TrialBlocks %leaves Trapdoors Doors CopperGrates
+
+@Poles
+    StandingTorches end_rod
 
 +dummy
     DefaultBlock
@@ -208,6 +216,7 @@
 =2; Stairs:half=bottom Slabs:type=bottom
 =3; Trapdoors Doors %wooden_shelves
 =4; Layers
+=5; Poles
 
 -shapeCategory
     snow:layers=8
@@ -247,3 +256,6 @@
     =10; snow:layers=5
     =12; snow:layers=6
     =14; snow:layers=7
+
+    #poles
+    =1; StandingTorches end_rod
