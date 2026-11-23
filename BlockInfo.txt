@@ -123,7 +123,6 @@
     redstone_wire
     lever %buttons
     %replaceable
-    Cutout
 
     CaveVines
     light
@@ -138,9 +137,10 @@
     sea_pickle:waterlogged=true
 
 
-+subsurface & transparent
++subsurface
     %leaves
 
++subsurface & transparent
     %crops %flowers %edible_for_sheep sugar_cane tall_grass
     short_grass leaf_litter kelp_plant bush vine
     crimson_roots crimson_fungus warped_roots warped_fungus
