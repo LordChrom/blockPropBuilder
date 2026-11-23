@@ -79,6 +79,12 @@
 @Bars
     iron_bars %bars
 
+@Chains
+    %chains
+
+@LightningRods
+    %lightning_rods
+
 @TranslucentPanes
     white_stained_glass_pane orange_stained_glass_pane magenta_stained_glass_pane light_blue_stained_glass_pane
     yellow_stained_glass_pane lime_stained_glass_pane pink_stained_glass_pane gray_stained_glass_pane
@@ -95,21 +101,18 @@
     moss_carpet pale_moss_carpet %wool_carpets
 
 @Layers
-    snow Diodes Carpets stonecutter sculk_sensor calibrated_sculk_sensor daylight_detector %pressure_plates redstone_wire
+    snow Diodes Carpets stonecutter sculk_sensor calibrated_sculk_sensor daylight_detector %pressure_plates
 
 @Cutout
     glass TrialBlocks %leaves Trapdoors Doors CopperGrates
 
 @Poles
-    StandingTorches end_rod
+    StandingTorches end_rod brewing_stand LightningRods Chains
 
 +dummy
     DefaultBlock
 
 #----
-
-+cutout
-    Cutout
 
 +transparent
     glass_pane
@@ -216,7 +219,7 @@
 =2; Stairs:half=bottom Slabs:type=bottom
 =3; Trapdoors Doors %wooden_shelves
 =4; Layers
-=5; Poles
+=5; Poles Fences Bars TranslucentPanes glass_pane Walls
 
 -shapeCategory
     snow:layers=8
@@ -247,7 +250,7 @@
     =5; Trapdoors:open=true:facing=north %wooden_shelves:facing=north Doors:open=false:facing=north  Doors:open=true:hinge=left:facing=west Doors:open=true:hinge=right:facing=east  ;#+z
 
     #layers (sixteenths)
-    =1;  Carpets %pressure_plates redstone_wire
+    =1;  Carpets %pressure_plates
     =2;  snow:layers=1 Diodes
     =4;  snow:layers=2
     =6;  snow:layers=3 daylight_detector
@@ -258,4 +261,7 @@
     =14; snow:layers=7
 
     #poles
-    =1; StandingTorches end_rod
+    =1; StandingTorches end_rod brewing_stand LightningRods
+    =1; Bars glass_pane TranslucentPanes Chains
+    =2; Fences
+    =4; Walls
